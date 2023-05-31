@@ -15,6 +15,7 @@ public class CarController : MonoBehaviour
     [SerializeField] Transform frontLeftTransform;
     [SerializeField] Transform frontRightTransform;
 
+    [SerializeField] GameObject brakeLights;
 
     public float acceleration = 500f;
     public float breakingForce = 300f;
@@ -30,9 +31,15 @@ public class CarController : MonoBehaviour
         currentAcceleration = acceleration * Input.GetAxis("Vertical");
 
         if (Input.GetKey(KeyCode.Space))
+        {
             currentBreakForce = breakingForce;
+            brakeLights.SetActive(true);
+        }
         else
+        {
             currentBreakForce = 0f;
+            brakeLights.SetActive(false);
+        }
 
         frontRight.motorTorque = currentAcceleration * motorForce;
         frontLeft.motorTorque = currentAcceleration * motorForce;
