@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: bf436d5a2321ab14cb4ffd1ad0a4f23f
+guid: a347aa2096aef51b8aedf8f9702472e9
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Nature.Chicken
-    second: {fileID: 2100000, guid: ad16e3958f4826140b86f179bc1e5d64, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
