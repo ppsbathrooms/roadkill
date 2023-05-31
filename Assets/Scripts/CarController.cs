@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,18 +6,20 @@ using UnityEngine;
 public class CarController : MonoBehaviour
 {
 
-    [SerializeField] WheelCollider backLeft;
-    [SerializeField] WheelCollider backRight;
-    [SerializeField] WheelCollider frontLeft;
-    [SerializeField] WheelCollider frontRight;
+    [SerializeField] private WheelCollider backLeft;
+    [SerializeField] private WheelCollider backRight;
+    [SerializeField] private WheelCollider frontLeft;
+    [SerializeField] private WheelCollider frontRight;
 
-    [SerializeField] Transform backLeftTransform;
-    [SerializeField] Transform backRightTransform;
-    [SerializeField] Transform frontLeftTransform;
-    [SerializeField] Transform frontRightTransform;
+    [SerializeField] private Transform backLeftTransform;
+    [SerializeField] private Transform backRightTransform;
+    [SerializeField] private Transform frontLeftTransform;
+    [SerializeField] private Transform frontRightTransform;
 
-    [SerializeField] GameObject brakeLights;
+    [SerializeField] private GameObject brakeLights;
 
+    [SerializeField] private float polloMultiplier;
+    
     public float acceleration = 500f;
     public float breakingForce = 300f;
     public float maxTurnAngle = 15f;
@@ -68,5 +71,17 @@ public class CarController : MonoBehaviour
 
         trans.position = position;
         trans.rotation = rotation;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("pollo"))
+        {
+            collision.transform.GetComponent<Rigidbody>().AddForce(GetComponent<Rigidbody>().velocity * polloMultiplier 
+                                                                   + new Vector3(0, polloMultiplier/2f, 0)*GetComponent<Rigidbody>().velocity.magnitude);
+            
+            Destroy(Instantiate(Settings.instance.deathEffect, collision.transform.position, Quaternion.identity, Settings.instance.effectsContainer), 2f);
+            Destroy(collision.gameObject, 0.5f);
+        }
     }
 }
