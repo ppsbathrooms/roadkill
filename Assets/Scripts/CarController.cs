@@ -71,7 +71,7 @@ public class CarController : MonoBehaviour
         
         if (Input.GetKey(KeyCode.R) || Input.GetKey(KeyCode.Delete))
             Respawn();
-        if (GetComponent<Rigidbody>().position.y < -3f)
+        if (transform.position.y < -3f)
             Respawn();
     }
 
