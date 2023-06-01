@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571328, b: 0.3069218, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -616,6 +616,7 @@ MonoBehaviour:
   chicken: {fileID: 7781090475184959475, guid: 558111e49efd5ca40ba7315637c67cc2, type: 3}
   boundsMin: {x: -50, y: 1, z: -50}
   boundsMax: {x: 50, y: 1, z: 50}
+  maxChickens: 350
   spawnTime: 0.1
 --- !u!4 &847520382
 Transform:
@@ -1438,7 +1439,7 @@ MonoBehaviour:
   brakeLights: {fileID: 1385540400}
   polloMultiplier: 200
   acceleration: 750
-  breakingForce: 450
+  breakingForce: 100
   maxTurnAngle: 15
   motorForce: 1
 --- !u!114 &1643020796
@@ -1665,8 +1666,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TraumaExponent: 1
-  MaximumAngularShake: {x: 5, y: 5, z: 5}
-  MaximumTranslationShake: {x: 0.75, y: 0.75, z: 0.75}
+  MaximumAngularShake: {x: 3, y: 3, z: 3}
+  MaximumTranslationShake: {x: 0.5, y: 0.5, z: 0.5}
 --- !u!4 &142507725004345527
 Transform:
   m_ObjectHideFlags: 0
