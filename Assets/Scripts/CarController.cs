@@ -29,21 +29,12 @@ public class CarController : MonoBehaviour
     private float currentBreakForce = 0f;
     private float currentTurnAngle = 0f;
     private Quaternion wheelShift;
-
+    
     private void FixedUpdate()
     {
         currentAcceleration = acceleration * Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            currentBreakForce = breakingForce;
-            brakeLights.SetActive(true);
-        }
-        else
-        {
-            currentBreakForce = 0f;
-            brakeLights.SetActive(false);
-        }
+        
 
         frontRight.motorTorque = currentAcceleration * motorForce;
         frontLeft.motorTorque = currentAcceleration * motorForce;
@@ -67,6 +58,17 @@ public class CarController : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            currentBreakForce = breakingForce;
+            brakeLights.SetActive(true);
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            currentBreakForce = 0f;
+            brakeLights.SetActive(false);
+        }
+        
         if (Input.GetKey(KeyCode.R) || Input.GetKey(KeyCode.Delete))
             Respawn();
         if (GetComponent<Rigidbody>().position.y < -3f)
@@ -103,8 +105,8 @@ public class CarController : MonoBehaviour
             collision.transform.GetComponent<Rigidbody>().AddForce(GetComponent<Rigidbody>().velocity * polloMultiplier 
                                                                    + new Vector3(0, polloMultiplier/2f, 0)*GetComponent<Rigidbody>().velocity.magnitude);
             
-            Destroy(Instantiate(Settings.instance.deathEffect, collision.transform.position, Quaternion.identity, Settings.instance.effectsContainer), 2f);
-            Destroy(collision.gameObject, 0.5f);
+            Instantiate(Settings.instance.deathEffect, collision.transform.position, Quaternion.identity, collision.transform);
+            Destroy(collision.gameObject, 2f);
         }
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1624,7 +1624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathEffect: {fileID: 1940269550785849207, guid: 50b4ed5c6a7c80b4ebb32f472f678eb8,
     type: 3}
-  effectsContainer: {fileID: 1667795160}
+  effectsContainer: {fileID: 0}
 --- !u!4 &921509945
 Transform:
   m_ObjectHideFlags: 0
@@ -3676,7 +3676,7 @@ Transform:
   - {fileID: 1207597868}
   - {fileID: 1385540401}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1643020793
 Rigidbody:
@@ -3808,37 +3808,6 @@ WheelCollider:
     m_AsymptoteValue: 1
     m_Stiffness: 5
   m_Enabled: 1
---- !u!1 &1667795159
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1667795160}
-  m_Layer: 0
-  m_Name: Effects
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1667795160
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1667795159}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.662243, y: 18.183626, z: -5.2315726}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1712860910
 GameObject:
   m_ObjectHideFlags: 0
@@ -4632,6 +4601,7 @@ GameObject:
   - component: {fileID: 1892655453}
   - component: {fileID: 1892655452}
   - component: {fileID: 1892655455}
+  - component: {fileID: 1892655456}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -4754,6 +4724,21 @@ MonoBehaviour:
   target: {fileID: 1643020792}
   translateSpeed: 10
   rotationSpeed: 10
+--- !u!114 &1892655456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892655450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1ee1c62c905bb24ea7c9cf3d9d40b56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TraumaExponent: 1
+  MaximumAngularShake: {x: 5, y: 5, z: 5}
+  MaximumTranslationShake: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!1 &1900540218
 GameObject:
   m_ObjectHideFlags: 0
