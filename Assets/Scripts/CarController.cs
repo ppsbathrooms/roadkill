@@ -19,7 +19,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private GameObject brakeLights;
 
     [SerializeField] private float polloMultiplier;
-    
+
     public float acceleration = 500f;
     public float breakingForce = 300f;
     public float maxTurnAngle = 15f;
@@ -28,10 +28,11 @@ public class CarController : MonoBehaviour
     private float currentAcceleration = 0f;
     private float currentBreakForce = 0f;
     private float currentTurnAngle = 0f;
+    private Quaternion wheelShift;
 
     private void FixedUpdate()
     {
-        currentAcceleration = acceleration * Input.GetAxis("Vertical");
+        currentAcceleration = acceleration * Input.GetAxisRaw("Vertical");
 
         if (Input.GetKey(KeyCode.Space))
         {
@@ -52,25 +53,47 @@ public class CarController : MonoBehaviour
         backRight.brakeTorque = currentBreakForce;
         backLeft.brakeTorque = currentBreakForce;
 
-        currentTurnAngle = maxTurnAngle * Input.GetAxis("Horizontal");
+        currentTurnAngle = maxTurnAngle * Input.GetAxisRaw("Horizontal");
 
         frontRight.steerAngle = currentTurnAngle;
         frontLeft.steerAngle = currentTurnAngle;
 
-        UpdateWheel(frontRight, frontRightTransform);
-        UpdateWheel(frontLeft, frontLeftTransform);
-        UpdateWheel(backRight, backRightTransform);
-        UpdateWheel(backLeft, backLeftTransform);
+        UpdateWheel(frontRight, frontRightTransform, false);
+        UpdateWheel(backRight, backRightTransform, false);
+
+        UpdateWheel(frontLeft, frontLeftTransform, true);
+        UpdateWheel(backLeft, backLeftTransform, true);
     }
 
-    void UpdateWheel(WheelCollider col, Transform trans)
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.R) || Input.GetKey(KeyCode.Delete))
+            Respawn();
+        if (GetComponent<Rigidbody>().position.y < -3f)
+            Respawn();
+    }
+
+    void Respawn()
+    {
+        transform.position = new Vector3(0, .1f, 0);
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+    }
+
+    void UpdateWheel(WheelCollider col, Transform trans, Boolean left)
     {
         Vector3 position;
         Quaternion rotation;
         col.GetWorldPose(out position, out rotation);
 
+        if (left)
+            wheelShift = Quaternion.Euler(0, 270, 0);
+        else
+            wheelShift = Quaternion.Euler(0, 90, 0);
+        Quaternion newRotation = rotation * wheelShift;
+
         trans.position = position;
-        trans.rotation = rotation;
+        trans.rotation = newRotation;
     }
 
     private void OnCollisionEnter(Collision collision)
