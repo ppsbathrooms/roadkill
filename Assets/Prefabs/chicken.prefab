@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16dcbd553552d874185a74e54a285cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localCenterOfMass: {x: 0, y: 0, z: -0.1}
+  _localCenterOfMass: {x: 0, y: 0, z: 0}
 --- !u!136 &6278008768616495853
 CapsuleCollider:
   m_ObjectHideFlags: 0

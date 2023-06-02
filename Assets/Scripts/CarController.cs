@@ -34,7 +34,12 @@ public class CarController : MonoBehaviour
     private float currentTurnAngle = 0f;
     private Quaternion wheelShift;
     private double speed;
-    
+
+    private void Start()
+    {
+        brakeLights.SetActive(false);
+    }
+
     private void FixedUpdate()
     {
         currentAcceleration = acceleration * Input.GetAxisRaw("Vertical");
