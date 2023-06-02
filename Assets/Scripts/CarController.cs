@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CarController : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private GameObject brakeLights;
 
     [SerializeField] private float polloMultiplier;
+    [SerializeField] private TMP_Text speedText;
 
     public float acceleration = 500f;
     public float breakingForce = 300f;
@@ -29,12 +31,13 @@ public class CarController : MonoBehaviour
     private float currentBreakForce = 0f;
     private float currentTurnAngle = 0f;
     private Quaternion wheelShift;
+    private double speed;
     
     private void FixedUpdate()
     {
         currentAcceleration = acceleration * Input.GetAxisRaw("Vertical");
+        speed = GetComponent<Rigidbody>().velocity.magnitude * 3.6;
 
-        
 
         frontRight.motorTorque = currentAcceleration * motorForce;
         frontLeft.motorTorque = currentAcceleration * motorForce;
@@ -73,6 +76,8 @@ public class CarController : MonoBehaviour
             Respawn();
         if (transform.position.y < -3f)
             Respawn();
+
+        speedText.text = Math.Round(speed).ToString();
     }
 
     void Respawn()
