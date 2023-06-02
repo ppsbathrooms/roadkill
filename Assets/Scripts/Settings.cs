@@ -11,6 +11,7 @@ public class Settings : MonoBehaviour
 
     [Header("Refs")] 
     public GameObject deathEffect;
+    public GameObject featherEffect;
 
     [Header("Containers")] 
     public Transform effectsContainer;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571328, b: 0.3069218, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -663,6 +663,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathEffect: {fileID: 1940269550785849207, guid: 50b4ed5c6a7c80b4ebb32f472f678eb8,
+    type: 3}
+  featherEffect: {fileID: 2319230115491359477, guid: e81407f24c52aed498443678065ccb3d,
     type: 3}
   effectsContainer: {fileID: 180937936}
   chickenContainer: {fileID: 1023394337}
@@ -1666,8 +1668,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TraumaExponent: 1
-  MaximumAngularShake: {x: 3, y: 3, z: 3}
-  MaximumTranslationShake: {x: 0.5, y: 0.5, z: 0.5}
+  MaximumAngularShake: {x: 2, y: 2, z: 2}
+  MaximumTranslationShake: {x: 0.3, y: 0.3, z: 0.3}
 --- !u!4 &142507725004345527
 Transform:
   m_ObjectHideFlags: 0

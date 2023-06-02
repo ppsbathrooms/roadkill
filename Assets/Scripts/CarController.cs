@@ -104,8 +104,10 @@ public class CarController : MonoBehaviour
         {
             collision.transform.GetComponent<Rigidbody>().AddForce(GetComponent<Rigidbody>().velocity * polloMultiplier 
                                                                    + new Vector3(0, polloMultiplier/2f, 0)*GetComponent<Rigidbody>().velocity.magnitude);
-            
+
             Instantiate(Settings.instance.deathEffect, collision.transform.position, Quaternion.identity, collision.transform);
+            Destroy(Instantiate(Settings.instance.featherEffect, collision.transform.position, Quaternion.identity, Settings.instance.effectsContainer), 2f);
+            //Instantiate(Settings.instance.featherEffect, collision.transform.position, Quaternion.identity, collision.transform);
             Destroy(collision.gameObject, 2f);
         }
     }

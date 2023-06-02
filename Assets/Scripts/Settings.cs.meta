@@ -4,9 +4,10 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - deathEffect: {fileID: 1940269550785849207, guid: 50b4ed5c6a7c80b4ebb32f472f678eb8,
-      type: 3}
+  - deathEffect: {instanceID: 0}
+  - featherEffect: {instanceID: 0}
   - effectsContainer: {instanceID: 0}
+  - chickenContainer: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
