@@ -12,9 +12,9 @@ public class Settings : MonoBehaviour
     [Header("Refs")] 
     public GameObject deathEffect;
     public GameObject featherEffect;
+    public Transform scene;
 
-    [Header("Containers")] 
+    [Space] [Header("Containers")] 
     public Transform effectsContainer;
-
     public Transform chickenContainer;
 }

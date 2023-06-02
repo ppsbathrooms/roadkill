@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class rigidbodyCenterOfMass : MonoBehaviour
+public class RigidbodyCenterOfMass : MonoBehaviour
 {
 	public Vector3 _localCenterOfMass;
 
