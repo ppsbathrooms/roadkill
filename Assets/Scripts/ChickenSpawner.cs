@@ -23,7 +23,8 @@ public class ChickenSpawner : MonoBehaviour
 
         Vector3 pos = new Vector3(Random.Range(boundsMin.x, boundsMax.x), Random.Range(boundsMin.y, boundsMax.y),
                 Random.Range(boundsMin.z, boundsMax.z));
-
-        Instantiate(chicken, pos, Quaternion.Euler(-90f, Random.Range(0f, 360f), 0f), Settings.instance.chickenContainer);
+        float distance = Vector3.Distance(new Vector3(0,0,0), pos);
+        if(distance < 48.5f)
+            Instantiate(chicken, pos, Quaternion.Euler(-90f, Random.Range(0f, 360f), 0f), Settings.instance.chickenContainer);
     }
 }
