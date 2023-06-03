@@ -83,8 +83,6 @@ public class CarController : MonoBehaviour
             Respawn();
         if (transform.position.y < -3f)
             Respawn();
-        if (Input.GetKey(KeyCode.E))
-            Boost();
 
         speedText.text = Math.Round(speed).ToString();
     }
@@ -125,6 +123,7 @@ public class CarController : MonoBehaviour
             Instantiate(Settings.instance.deathEffect, chickenPos, Quaternion.identity, collision.transform);
             Destroy(Instantiate(Settings.instance.featherEffect, chickenPos, Quaternion.identity, Settings.instance.effectsContainer), 2f);
             Destroy(collision.gameObject, 2f);
+            Boost();
         }
     }
 }

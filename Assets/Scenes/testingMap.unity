@@ -683,7 +683,7 @@ MonoBehaviour:
   chicken: {fileID: 7781090475184959475, guid: 558111e49efd5ca40ba7315637c67cc2, type: 3}
   boundsMin: {x: -50, y: 1, z: -50}
   boundsMax: {x: 50, y: 1, z: 50}
-  maxChickens: 150
+  maxChickens: 350
   spawnTime: 0.1
 --- !u!4 &847520382
 Transform:
@@ -2248,7 +2248,7 @@ MonoBehaviour:
   speedText: {fileID: 1506145259}
   rb: {fileID: 1643020793}
   polloMultiplier: 200
-  boostMultiplier: 0.1
+  boostMultiplier: 1
   acceleration: 750
   breakingForce: 100
   maxTurnAngle: 15
