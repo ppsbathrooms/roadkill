@@ -81,8 +81,7 @@ public class CarController : MonoBehaviour
         
         if (Input.GetKey(KeyCode.R) || Input.GetKey(KeyCode.Delete))
             Respawn();
-        if (transform.position.y < -3f)
-            Respawn();
+
         if (Input.GetKey(KeyCode.E))
             Boost();
 
