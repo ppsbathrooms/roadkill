@@ -81,8 +81,9 @@ public class CarController : MonoBehaviour
         
         if (Input.GetKey(KeyCode.R) || Input.GetKey(KeyCode.Delete))
             Respawn();
-        if (transform.position.y < -3f)
-            Respawn();
+
+        if (Input.GetKey(KeyCode.E))
+            Boost();
 
         speedText.text = Math.Round(speed).ToString();
     }
@@ -116,14 +117,13 @@ public class CarController : MonoBehaviour
         {
             Vector3 carVel = rb.velocity;
             collision.transform.GetComponent<Rigidbody>().AddForce(carVel * polloMultiplier 
-                                                                   + new Vector3(0, polloMultiplier/2f, 0)*carVel.magnitude);
+                                                                   + transform.up * (polloMultiplier/2*carVel.magnitude) );
 
             Vector3 chickenPos = collision.transform.position;
             
             Instantiate(Settings.instance.deathEffect, chickenPos, Quaternion.identity, collision.transform);
             Destroy(Instantiate(Settings.instance.featherEffect, chickenPos, Quaternion.identity, Settings.instance.effectsContainer), 2f);
             Destroy(collision.gameObject, 2f);
-            Boost();
         }
     }
 }
