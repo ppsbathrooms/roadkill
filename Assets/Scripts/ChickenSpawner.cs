@@ -5,8 +5,7 @@ using UnityEngine;
 public class ChickenSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject chicken;
-    [SerializeField] private Vector3 boundsMin;
-    [SerializeField] private Vector3 boundsMax;
+    [SerializeField] private float spawnRadius;
 
     [SerializeField] private float maxChickens;
     [SerializeField] private float spawnTime;
@@ -21,10 +20,7 @@ public class ChickenSpawner : MonoBehaviour
         if (Settings.instance.chickenContainer.hierarchyCount >= maxChickens)
             return;
 
-        Vector3 pos = new Vector3(Random.Range(boundsMin.x, boundsMax.x), Random.Range(boundsMin.y, boundsMax.y),
-                Random.Range(boundsMin.z, boundsMax.z));
-        float distance = Vector3.Distance(new Vector3(0,0,0), pos);
-        if(distance < 48.5f)
-            Instantiate(chicken, pos, Quaternion.Euler(-90f, Random.Range(0f, 360f), 0f), Settings.instance.chickenContainer);
+        Vector3 pos = Random.onUnitSphere * spawnRadius;
+        Instantiate(chicken, pos, Quaternion.Euler(-90f, Random.Range(0f, 360f), 0f), Settings.instance.chickenContainer);
     }
 }
