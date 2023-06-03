@@ -21,6 +21,13 @@ public class ChickenSpawner : MonoBehaviour
             return;
 
         Vector3 pos = Random.onUnitSphere * spawnRadius;
-        Instantiate(chicken, pos, Quaternion.Euler(-90f, Random.Range(0f, 360f), 0f), Settings.instance.chickenContainer);
+        
+        Vector3 up = pos.normalized;
+        Vector3 forward = Random.onUnitSphere;
+        
+        Quaternion rotation = Quaternion.LookRotation(up, forward);
+        
+        
+        Instantiate(chicken, pos, rotation, Settings.instance.chickenContainer);
     }
 }

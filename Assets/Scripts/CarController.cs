@@ -117,7 +117,7 @@ public class CarController : MonoBehaviour
         {
             Vector3 carVel = rb.velocity;
             collision.transform.GetComponent<Rigidbody>().AddForce(carVel * polloMultiplier 
-                                                                   + new Vector3(0, polloMultiplier/2f, 0)*carVel.magnitude);
+                                                                   + transform.up * (polloMultiplier/2*carVel.magnitude) );
 
             Vector3 chickenPos = collision.transform.position;
             
