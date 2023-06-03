@@ -24,6 +24,7 @@ public class CarController : MonoBehaviour
 
     [Space] [Header("Settings")]
     [SerializeField] private float polloMultiplier = 200;
+    [SerializeField] private float boostMultiplier = 1f;
     [SerializeField] private float acceleration = 500f;
     [SerializeField] private float breakingForce = 300f;
     [SerializeField] private float maxTurnAngle = 15f;
@@ -82,6 +83,8 @@ public class CarController : MonoBehaviour
             Respawn();
         if (transform.position.y < -3f)
             Respawn();
+        if (Input.GetKey(KeyCode.E))
+            Boost();
 
         speedText.text = Math.Round(speed).ToString();
     }
@@ -91,6 +94,11 @@ public class CarController : MonoBehaviour
         transform.position = new Vector3(0, .1f, 0);
         transform.rotation = Quaternion.Euler(0, 0, 0);
         rb.velocity = Vector3.zero;
+    }
+
+    void Boost()
+    {
+        rb.AddForce(transform.forward * boostMultiplier * 3.6f, ForceMode.VelocityChange);
     }
 
     void UpdateWheel(WheelCollider col, Transform trans, Boolean left)
