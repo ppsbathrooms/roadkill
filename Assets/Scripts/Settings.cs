@@ -17,4 +17,5 @@ public class Settings : MonoBehaviour
     [Space] [Header("Containers")] 
     public Transform effectsContainer;
     public Transform chickenContainer;
+    public Transform coopContainer;
 }
