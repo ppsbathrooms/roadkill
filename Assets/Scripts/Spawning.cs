@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChickenSpawner : MonoBehaviour
+public class Spawning : MonoBehaviour
 {
     [SerializeField] private GameObject chicken;
     [SerializeField] private GameObject coop;

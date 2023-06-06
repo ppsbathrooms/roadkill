@@ -29,6 +29,8 @@ public class CarController : MonoBehaviour
     [SerializeField] private float breakingForce = 300f;
     [SerializeField] private float maxTurnAngle = 15f;
     [SerializeField] private float motorForce = 1f;
+
+    [SerializeField] private Vector3 carSpawn;
     
     private float currentAcceleration = 0f;
     private float currentBreakForce = 0f;
@@ -87,7 +89,7 @@ public class CarController : MonoBehaviour
 
     void Respawn()
     {
-        transform.position = new Vector3(0, .1f, 0);
+        transform.position = carSpawn;
         transform.rotation = Quaternion.Euler(0, 0, 0);
         rb.velocity = Vector3.zero;
     }
