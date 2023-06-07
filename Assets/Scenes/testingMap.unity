@@ -690,8 +690,8 @@ MonoBehaviour:
   chicken: {fileID: 7781090475184959475, guid: 558111e49efd5ca40ba7315637c67cc2, type: 3}
   coop: {fileID: 1599563689265203387, guid: 96e9f98373a940e4daa27bf607ca1da5, type: 3}
   spawnRadius: 130
-  maxChickens: 150
-  maxCoops: 50
+  maxChickens: 500
+  maxCoops: 100
   spawnTime: 0.1
 --- !u!4 &847520382
 Transform:
@@ -875,6 +875,8 @@ MonoBehaviour:
   deathEffect: {fileID: 1940269550785849207, guid: 50b4ed5c6a7c80b4ebb32f472f678eb8,
     type: 3}
   featherEffect: {fileID: 2319230115491359477, guid: e81407f24c52aed498443678065ccb3d,
+    type: 3}
+  eggEffect: {fileID: 6136946047218845970, guid: f220ec15616182249b5c9c760c048e79,
     type: 3}
   scene: {fileID: 1023394337}
   effectsContainer: {fileID: 180937936}

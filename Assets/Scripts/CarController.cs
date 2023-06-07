@@ -117,13 +117,22 @@ public class CarController : MonoBehaviour
             Vector3 carVel = rb.velocity;
             collision.transform.GetComponent<Rigidbody>().AddForce(carVel * polloMultiplier 
                                                                    + transform.up * (polloMultiplier/2*carVel.magnitude) );
-
             Vector3 chickenPos = collision.transform.position;
             
             Instantiate(Settings.instance.deathEffect, chickenPos, Quaternion.identity, collision.transform);
             Destroy(Instantiate(Settings.instance.featherEffect, chickenPos, Quaternion.identity, Settings.instance.effectsContainer), 2f);
             Destroy(collision.gameObject, 2f);
             Boost();
+        }
+        if (collision.gameObject.CompareTag("coop"))
+        {
+            Vector3 carVel = rb.velocity;
+            collision.transform.GetComponent<Rigidbody>().AddForce(carVel * polloMultiplier 
+                                                                   + transform.up * (polloMultiplier/2*carVel.magnitude) );
+
+            Vector3 coopPos = collision.transform.position;
+            Destroy(Instantiate(Settings.instance.eggEffect, coopPos, Quaternion.identity, Settings.instance.effectsContainer), 2f);
+            Destroy(collision.gameObject, 2f);
         }
     }
 }
