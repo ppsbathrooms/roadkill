@@ -20,6 +20,7 @@ public class CarController : MonoBehaviour
 
     [SerializeField] private GameObject brakeLights;
     [SerializeField] private TMP_Text speedText;
+    [SerializeField] private TMP_Text eggText;
     [SerializeField] private Rigidbody rb;
 
     [Space] [Header("Settings")]
@@ -112,9 +113,10 @@ public class CarController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Vector3 carVel = rb.velocity;
+
         if (collision.gameObject.CompareTag("pollo"))
         {
-            Vector3 carVel = rb.velocity;
             collision.transform.GetComponent<Rigidbody>().AddForce(carVel * polloMultiplier 
                                                                    + transform.up * (polloMultiplier/2*carVel.magnitude) );
             Vector3 chickenPos = collision.transform.position;
@@ -123,16 +125,24 @@ public class CarController : MonoBehaviour
             Destroy(Instantiate(Settings.instance.featherEffect, chickenPos, Quaternion.identity, Settings.instance.effectsContainer), 2f);
             Destroy(collision.gameObject, 2f);
             Boost();
+            PlayerData.instance.Eggs ++;
+            EggUpdate();
         }
         if (collision.gameObject.CompareTag("coop"))
         {
-            Vector3 carVel = rb.velocity;
             collision.transform.GetComponent<Rigidbody>().AddForce(carVel * polloMultiplier 
                                                                    + transform.up * (polloMultiplier/2*carVel.magnitude) );
 
             Vector3 coopPos = collision.transform.position;
             Destroy(Instantiate(Settings.instance.eggEffect, coopPos, Quaternion.identity, Settings.instance.effectsContainer), 2f);
             Destroy(collision.gameObject, 2f);
+            PlayerData.instance.Eggs += 5;
+            EggUpdate();
         }
+    }
+
+    private void EggUpdate()
+    {
+        eggText.text = PlayerData.instance.Eggs.ToString();
     }
 }
