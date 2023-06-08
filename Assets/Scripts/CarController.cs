@@ -1,12 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Collidable;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 public class CarController : MonoBehaviour
 {
 
+    public static UnityEvent<AbstractCollidableObject> onHitCollidable = new UnityEvent<AbstractCollidableObject>();
+    
     [Header("Refs")]
     [SerializeField] private WheelCollider backLeft;
     [SerializeField] private WheelCollider backRight;
@@ -19,8 +23,6 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform frontRightTransform;
 
     [SerializeField] private GameObject brakeLights;
-    [SerializeField] private TMP_Text speedText;
-    [SerializeField] private TMP_Text eggText;
     [SerializeField] private Rigidbody rb;
 
     [Space] [Header("Settings")]
@@ -36,8 +38,13 @@ public class CarController : MonoBehaviour
     private float currentBreakForce = 0f;
     private float currentTurnAngle = 0f;
     private Quaternion wheelShift;
-    private double speed;
+    private float speed;
 
+    private void Awake()
+    {
+        onHitCollidable.AddListener((AbstractCollidableObject collidable) => { PlayerData.eggCount += collidable.eggsWhenHit; });
+    }
+    
     private void Start()
     {
         brakeLights.SetActive(false);
@@ -45,8 +52,13 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        UpdateCarForces();
+    }
+
+    private void UpdateCarForces()
+    {
         currentAcceleration = acceleration * Input.GetAxisRaw("Vertical");
-        speed = rb.velocity.magnitude * 3.6;
+        speed = rb.velocity.magnitude * 3.6f;
 
         frontRight.motorTorque = currentAcceleration;
         frontLeft.motorTorque = currentAcceleration;
@@ -84,7 +96,7 @@ public class CarController : MonoBehaviour
         if (Input.GetKey(KeyCode.R) || Input.GetKey(KeyCode.Delete))
             Respawn();
 
-        speedText.text = Math.Round(speed).ToString();
+        UIManager.instance.SetSpeedText(speed);
     }
 
     void Respawn()
@@ -112,36 +124,19 @@ public class CarController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Vector3 carVel = rb.velocity;
-
-        if (collision.gameObject.CompareTag("pollo"))
+        if (collision.transform.TryGetComponent<AbstractCollidableObject>(out AbstractCollidableObject collidableObject))
         {
-            collision.transform.GetComponent<Rigidbody>().AddForce(carVel * polloMultiplier 
-                                                                   + transform.up * (polloMultiplier/2*carVel.magnitude) );
-            Vector3 chickenPos = collision.transform.position;
+            if (!collidableObject.onHitByPlayer())
+                return;
             
-            Instantiate(Settings.instance.deathEffect, chickenPos, Quaternion.identity, collision.transform);
-            Destroy(Instantiate(Settings.instance.featherEffect, chickenPos, Quaternion.identity, Settings.instance.effectsContainer), 2f);
-            Destroy(collision.gameObject, 2f);
-            Boost();
-            PlayerData.instance.Eggs ++;
-            EggUpdate();
-        }
-        if (collision.gameObject.CompareTag("coop"))
-        {
+            onHitCollidable.Invoke(collidableObject);
+
+            if (collidableObject.boostWhenHit)
+                Boost();
+            
+            Vector3 carVel = rb.velocity;
             collision.transform.GetComponent<Rigidbody>().AddForce(carVel * polloMultiplier 
-                                                                   + transform.up * (polloMultiplier/2*carVel.magnitude) );
-
-            Vector3 coopPos = collision.transform.position;
-            Destroy(Instantiate(Settings.instance.eggEffect, coopPos, Quaternion.identity, Settings.instance.effectsContainer), 2f);
-            Destroy(collision.gameObject, 2f);
-            PlayerData.instance.Eggs += 5;
-            EggUpdate();
+                    + transform.up * (polloMultiplier/2*carVel.magnitude) );
         }
-    }
-
-    private void EggUpdate()
-    {
-        eggText.text = PlayerData.instance.Eggs.ToString();
     }
 }

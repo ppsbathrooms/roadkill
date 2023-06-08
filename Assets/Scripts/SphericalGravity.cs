@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class SphericalGravity : MonoBehaviour
 {
-    [SerializeField] private Rigidbody rigidbody;
+    [SerializeField] private Rigidbody rb;
     
-    void Start()
+    private void Awake()
     {
-        rigidbody.useGravity = false;
+        rb.useGravity = false;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        rigidbody.velocity += -transform.position.normalized * (9.81f * Time.fixedDeltaTime);
+        rb.velocity += -transform.position.normalized * (9.81f * Time.fixedDeltaTime);
     }
 }

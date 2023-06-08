@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6967117153185264969}
   - component: {fileID: 6278008768616495852}
   - component: {fileID: 8141101849240178214}
+  - component: {fileID: -8586056774981577048}
   - component: {fileID: 1459680441487864310}
   - component: {fileID: 6278008768616495827}
   - component: {fileID: 6278008768616495826}
@@ -18,7 +19,7 @@ GameObject:
   - component: {fileID: 8473161683423659754}
   m_Layer: 0
   m_Name: Chicken
-  m_TagString: pollo
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89,6 +90,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-8586056774981577048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7781090475184959475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1c26c448c8b3241aac599e15599730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eggsWhenHit: 1
+  boostWhenHit: 1
 --- !u!114 &1459680441487864310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36c704edfac9d644aab10746e4536c59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 6278008768616495827}
+  rb: {fileID: 6278008768616495827}
 --- !u!54 &6278008768616495827
 Rigidbody:
   m_ObjectHideFlags: 0
