@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class cameraFollow : MonoBehaviour
 {
+    [Header("Settings")]
     [SerializeField] private Vector3 offset;
     [SerializeField] private Transform target;
     [SerializeField] private float translateSpeed;

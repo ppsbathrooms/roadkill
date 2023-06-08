@@ -31,9 +31,8 @@ public class CarController : MonoBehaviour
     [SerializeField, Range(0, 1500)] private float acceleration = 750f;
     [SerializeField, Range(0, 500)] private float breakingForce = 300f;
     [SerializeField, Range(0, 180)] private float maxTurnAngle = 15f;
-
     [SerializeField] private Vector3 carSpawn;
-    
+
     private float currentAcceleration = 0f;
     private float currentBreakForce = 0f;
     private float currentTurnAngle = 0f;
@@ -47,6 +46,7 @@ public class CarController : MonoBehaviour
     
     private void Start()
     {
+        transform.position = carSpawn;
         brakeLights.SetActive(false);
     }
 
@@ -60,8 +60,8 @@ public class CarController : MonoBehaviour
         currentAcceleration = acceleration * Input.GetAxisRaw("Vertical");
         speed = rb.velocity.magnitude * 3.6f;
 
-        frontRight.motorTorque = currentAcceleration;
-        frontLeft.motorTorque = currentAcceleration;
+        backRight.motorTorque = currentAcceleration;
+        backLeft.motorTorque = currentAcceleration;
 
         frontRight.brakeTorque = currentBreakForce;
         frontLeft.brakeTorque = currentBreakForce;
@@ -96,7 +96,7 @@ public class CarController : MonoBehaviour
         if (Input.GetKey(KeyCode.R) || Input.GetKey(KeyCode.Delete))
             Respawn();
 
-        UIManager.instance.SetSpeedText(speed);
+        UIManager.instance.UpdateSpeedText(speed);
     }
 
     void Respawn()

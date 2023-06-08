@@ -2952,7 +2952,7 @@ GameObject:
   - component: {fileID: 1643020795}
   - component: {fileID: 1643020793}
   - component: {fileID: 1643020794}
-  - component: {fileID: 1643020796}
+  - component: {fileID: 1643020798}
   m_Layer: 6
   m_Name: Car
   m_TagString: Untagged
@@ -3048,19 +3048,6 @@ MonoBehaviour:
   breakingForce: 100
   maxTurnAngle: 15
   carSpawn: {x: 0, y: 502, z: 0}
---- !u!114 &1643020796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1643020791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16dcbd553552d874185a74e54a285cc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _localCenterOfMass: {x: 0, y: 0, z: 0}
 --- !u!114 &1643020797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3074,6 +3061,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1643020793}
+--- !u!114 &1643020798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643020791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16dcbd553552d874185a74e54a285cc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _localCenterOfMass: {x: 0, y: 0, z: 0}
 --- !u!1 &1658109411
 GameObject:
   m_ObjectHideFlags: 0

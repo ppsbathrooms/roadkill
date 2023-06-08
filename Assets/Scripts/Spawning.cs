@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Spawning : MonoBehaviour
 {
+    [Header("Refs")]
     [SerializeField] private GameObject chicken;
     [SerializeField] private GameObject coop;
     [SerializeField] private float spawnRadius;
 
+    [Space][Header("Settings")]
     [SerializeField, Range(0f, 10000f)] private float maxChickens;
     [SerializeField, Range(0f, 1500f)] private float maxCoops;
     [SerializeField, Range(0f, 0.5f)] private float spawnTime;
