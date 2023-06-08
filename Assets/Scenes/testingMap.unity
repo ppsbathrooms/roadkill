@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1515829, g: 0.15147191, b: 0.19517085, a: 1}
+  m_IndirectSpecularColor: {r: 0.18714622, g: 0.18598543, b: 0.1826113, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1100,8 +1100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chicken: {fileID: 7781090475184959475, guid: 558111e49efd5ca40ba7315637c67cc2, type: 3}
   coop: {fileID: 1599563689265203387, guid: 96e9f98373a940e4daa27bf607ca1da5, type: 3}
-  spawnRadius: 510
-  maxChickens: 2500
+  spawnRadius: 505
+  maxChickens: 5000
   maxCoops: 400
   spawnTime: 0.1
 --- !u!4 &847520382
@@ -2097,7 +2097,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1329365773
 MeshRenderer:
@@ -2119,7 +2119,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7c3439db87447ae4699aa1ef1348841d, type: 2}
+  - {fileID: 2100000, guid: 1abaaab6f90819ab589904e8cb42a7be, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2148,7 +2148,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1329365771}
-  m_Mesh: {fileID: 289301614986012343, guid: 10d953ce58bd46f4ca41a3a3382db57f, type: 3}
+  m_Mesh: {fileID: -5619984593111677194, guid: e2b67657f29f2669b83c82c83409311e, type: 3}
 --- !u!4 &1329365775
 Transform:
   m_ObjectHideFlags: 0
@@ -2158,7 +2158,7 @@ Transform:
   m_GameObject: {fileID: 1329365771}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 500, y: 500, z: 500}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1023394337}
