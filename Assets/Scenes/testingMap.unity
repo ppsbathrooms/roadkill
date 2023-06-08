@@ -901,9 +901,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chicken: {fileID: 7781090475184959475, guid: 558111e49efd5ca40ba7315637c67cc2, type: 3}
   coop: {fileID: 1599563689265203387, guid: 96e9f98373a940e4daa27bf607ca1da5, type: 3}
-  spawnRadius: 130
-  maxChickens: 500
-  maxCoops: 100
+  spawnRadius: 510
+  maxChickens: 2500
+  maxCoops: 400
   spawnTime: 0.1
 --- !u!4 &847520382
 Transform:
@@ -1920,7 +1920,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 7c3439db87447ae4699aa1ef1348841d, type: 2}
-  - {fileID: 2100000, guid: 5dc3290d42af8cd4ab7dfe006247488f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1959,7 +1958,7 @@ Transform:
   m_GameObject: {fileID: 1329365771}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 125, y: 125, z: 125}
+  m_LocalScale: {x: 500, y: 500, z: 500}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1023394337}
@@ -2444,7 +2443,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1643020791}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 126, z: 0}
+  m_LocalPosition: {x: 0, y: 502, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2524,8 +2523,7 @@ MonoBehaviour:
   acceleration: 750
   breakingForce: 100
   maxTurnAngle: 15
-  motorForce: 1
-  carSpawn: {x: 0, y: 126, z: 0}
+  carSpawn: {x: 0, y: 502, z: 0}
 --- !u!114 &1643020796
 MonoBehaviour:
   m_ObjectHideFlags: 0

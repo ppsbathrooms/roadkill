@@ -8,9 +8,9 @@ public class Spawning : MonoBehaviour
     [SerializeField] private GameObject coop;
     [SerializeField] private float spawnRadius;
 
-    [SerializeField] private float maxChickens;
-    [SerializeField] private float maxCoops;
-    [SerializeField] private float spawnTime;
+    [SerializeField, Range(0, 4000)] private float maxChickens;
+    [SerializeField, Range(0, 1500)] private float maxCoops;
+    [SerializeField, Range(0, 1)] private float spawnTime;
     
     private void Start()
     {

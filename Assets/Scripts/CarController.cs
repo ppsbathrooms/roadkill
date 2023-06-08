@@ -24,12 +24,11 @@ public class CarController : MonoBehaviour
     [SerializeField] private Rigidbody rb;
 
     [Space] [Header("Settings")]
-    [SerializeField] private float polloMultiplier = 200;
-    [SerializeField] private float boostMultiplier = 1f;
-    [SerializeField] private float acceleration = 500f;
-    [SerializeField] private float breakingForce = 300f;
-    [SerializeField] private float maxTurnAngle = 15f;
-    [SerializeField] private float motorForce = 1f;
+    [SerializeField, Range(0, 400)] private float polloMultiplier = 200;
+    [SerializeField, Range(0, 1)] private float boostMultiplier = .25f;
+    [SerializeField, Range(0, 1500)] private float acceleration = 750f;
+    [SerializeField, Range(0, 500)] private float breakingForce = 300f;
+    [SerializeField, Range(0, 180)] private float maxTurnAngle = 15f;
 
     [SerializeField] private Vector3 carSpawn;
     
@@ -49,8 +48,8 @@ public class CarController : MonoBehaviour
         currentAcceleration = acceleration * Input.GetAxisRaw("Vertical");
         speed = rb.velocity.magnitude * 3.6;
 
-        frontRight.motorTorque = currentAcceleration * motorForce;
-        frontLeft.motorTorque = currentAcceleration * motorForce;
+        frontRight.motorTorque = currentAcceleration;
+        frontLeft.motorTorque = currentAcceleration;
 
         frontRight.brakeTorque = currentBreakForce;
         frontLeft.brakeTorque = currentBreakForce;
