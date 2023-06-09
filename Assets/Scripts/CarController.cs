@@ -26,11 +26,11 @@ public class CarController : MonoBehaviour
     [SerializeField] private Rigidbody rb;
 
     [Space] [Header("Settings")]
-    [SerializeField, Range(0, 400)] private float polloMultiplier = 200;
-    [SerializeField, Range(0, 1)] private float boostMultiplier = .25f;
-    [SerializeField, Range(0, 1500)] private float acceleration = 750f;
-    [SerializeField, Range(0, 500)] private float breakingForce = 300f;
-    [SerializeField, Range(0, 180)] private float maxTurnAngle = 15f;
+    [SerializeField, Range(0f, 400f)] private float polloMultiplier = 200f;
+    [SerializeField, Range(0f, 1f)] private float boostMultiplier = .25f;
+    [SerializeField, Range(0f, 1500f)] private float acceleration = 750f;
+    [SerializeField, Range(0f, 500f)] private float breakingForce = 300f;
+    [SerializeField, Range(0f, 180f)] private float maxTurnAngle = 15f;
     [SerializeField] private Vector3 carSpawn;
 
     private float currentAcceleration = 0f;
@@ -102,7 +102,7 @@ public class CarController : MonoBehaviour
     void Respawn()
     {
         transform.position = carSpawn;
-        transform.rotation = Quaternion.Euler(0, 0, 0);
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         rb.velocity = Vector3.zero;
     }
 
@@ -115,7 +115,7 @@ public class CarController : MonoBehaviour
     {
         col.GetWorldPose(out Vector3 position, out Quaternion rotation);
 
-        wheelShift = Quaternion.Euler(0, left ? 270 : 90, 0);
+        wheelShift = Quaternion.Euler(0f, left ? 270f : 90f, 0f);
         Quaternion newRotation = rotation * wheelShift;
 
         trans.position = position;

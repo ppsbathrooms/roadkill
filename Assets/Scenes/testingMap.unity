@@ -1102,7 +1102,7 @@ MonoBehaviour:
   coop: {fileID: 1599563689265203387, guid: 96e9f98373a940e4daa27bf607ca1da5, type: 3}
   spawnRadius: 505
   maxChickens: 5000
-  maxCoops: 400
+  maxCoops: 200
   spawnTime: 0.1
 --- !u!4 &847520382
 Transform:
