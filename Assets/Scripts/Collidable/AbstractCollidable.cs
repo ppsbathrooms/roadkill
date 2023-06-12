@@ -18,6 +18,8 @@ namespace Collidable
             
             Destroy(gameObject, 2);
             SpawnDeathEffects();
+
+            gameObject.layer = 7;
             return true;
         }
 
