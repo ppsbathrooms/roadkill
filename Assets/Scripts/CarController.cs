@@ -5,6 +5,8 @@ using Collidable;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 
 public class CarController : MonoBehaviour
 {
@@ -32,7 +34,7 @@ public class CarController : MonoBehaviour
     [SerializeField, Range(0f, 500f)] private float breakingForce = 300f;
     [SerializeField, Range(0f, 180f)] private float maxTurnAngle = 15f;
     [SerializeField] private Vector3 carSpawn;
-
+    
     private float currentAcceleration = 0f;
     private float currentBreakForce = 0f;
     private float currentTurnAngle = 0f;
@@ -57,7 +59,7 @@ public class CarController : MonoBehaviour
 
     private void UpdateCarForces()
     {
-        currentAcceleration = acceleration * Input.GetAxisRaw("Vertical");
+        currentAcceleration = acceleration * Input.GetAxis("Vertical");
         speed = rb.velocity.magnitude * 3.6f;
 
         backRight.motorTorque = currentAcceleration;
@@ -68,8 +70,7 @@ public class CarController : MonoBehaviour
         backRight.brakeTorque = currentBreakForce;
         backLeft.brakeTorque = currentBreakForce;
 
-        currentTurnAngle = maxTurnAngle * Input.GetAxisRaw("Horizontal");
-
+        currentTurnAngle = maxTurnAngle * Input.GetAxis("Horizontal");
         frontRight.steerAngle = currentTurnAngle;
         frontLeft.steerAngle = currentTurnAngle;
 
