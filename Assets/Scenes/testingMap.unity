@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18714622, g: 0.18598543, b: 0.1826113, a: 1}
+  m_IndirectSpecularColor: {r: 0.24379471, g: 0.2497297, b: 0.25209993, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1080,7 +1080,7 @@ GameObject:
   - component: {fileID: 847520382}
   - component: {fileID: 847520381}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: ObjectSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1098,12 +1098,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 567d5758b47043f4f9f25f44f225476b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chicken: {fileID: 7781090475184959475, guid: 558111e49efd5ca40ba7315637c67cc2, type: 3}
-  coop: {fileID: 1599563689265203387, guid: 96e9f98373a940e4daa27bf607ca1da5, type: 3}
-  spawnRadius: 505
-  maxChickens: 5000
-  maxCoops: 200
-  spawnTime: 0.1
+  planet: {fileID: 1329365775}
+  maxSpawnDistanceFromPlayer: 120
+  objectsToSpawn:
+  - prefab: {fileID: 7781090475184959475, guid: 558111e49efd5ca40ba7315637c67cc2,
+      type: 3}
+    parent: {fileID: 1933892608}
+    maxAllowed: 5000
+    timeBetweenSpawns: 0.2
+  - prefab: {fileID: 1599563689265203387, guid: 96e9f98373a940e4daa27bf607ca1da5,
+      type: 3}
+    parent: {fileID: 1824506117}
+    maxAllowed: 200
+    timeBetweenSpawns: 1.5
 --- !u!4 &847520382
 Transform:
   m_ObjectHideFlags: 0
@@ -2080,7 +2087,7 @@ GameObject:
   - component: {fileID: 1329365773}
   - component: {fileID: 1329365772}
   m_Layer: 0
-  m_Name: Ground
+  m_Name: Planet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -10,6 +10,7 @@ using Unity.VisualScripting;
 
 public class CarController : MonoBehaviour
 {
+    public static CarController instance;
 
     public static UnityEvent<AbstractCollidableObject> onHitCollidable = new UnityEvent<AbstractCollidableObject>();
     
@@ -43,6 +44,7 @@ public class CarController : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
         onHitCollidable.AddListener((AbstractCollidableObject collidable) => { PlayerData.eggCount += collidable.eggsWhenHit; });
     }
     
