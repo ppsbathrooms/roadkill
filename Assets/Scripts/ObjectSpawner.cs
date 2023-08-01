@@ -1,73 +1,27 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
-
 public class ObjectSpawner : MonoBehaviour
 {
-    public static ObjectSpawner instance;
+    [SerializeField] private GameObject chicken;
+    [SerializeField] private Vector3 boundsMin;
+    [SerializeField] private Vector3 boundsMax;
 
-    private void Awake() { instance = this; }
-
-    [Header("General")]
-    [SerializeField] private Transform planet = null;
-    [SerializeField] private float maxSpawnDistanceFromPlayer;
+    [SerializeField] private float maxChickens;
+    [SerializeField] private float spawnTime;
     
-    [System.Serializable]
-    private class ObjectToSpawn
-    {
-        public GameObject prefab;
-        public Transform parent;
-        public int maxAllowed;
-        public float timeBetweenSpawns;
-
-        public IEnumerator SpawnCycle()
-        {
-            if (parent.childCount >= maxAllowed)
-                yield break;
-
-            while (true)
-            {
-                yield return new WaitForSeconds(timeBetweenSpawns);
-                Vector3 pos = GenerateSpawnPosition();
-                Quaternion rotation = GenerateSpawnRotaiton(pos);
-
-                Instantiate(prefab, pos, rotation, parent);
-            }
-        }
-    }
-    [Space, Header("ObjectsToSpawn")] 
-    [SerializeField] private ObjectToSpawn[] objectsToSpawn;
-    
-    private static float planetRadius;
-    private static float maxSpawnAngleFromPlayer;
-    private static Transform player;
-
     private void Start()
     {
-        planetRadius = planet.transform.localScale.x*5f;
-        maxSpawnAngleFromPlayer = maxSpawnDistanceFromPlayer / planetRadius * Mathf.Rad2Deg;
-        player = CarController.instance.transform;
-        
-        foreach (ObjectToSpawn objectToSpawn in objectsToSpawn)
-            StartCoroutine(objectToSpawn.SpawnCycle());
+        InvokeRepeating(nameof(SpawnChicken), spawnTime, spawnTime);
     }
-
-    private static Vector3 GenerateSpawnPosition()
+    private void SpawnChicken()
     {
-        Vector3 randomPoint = Random.insideUnitSphere;
-        randomPoint *= maxSpawnAngleFromPlayer;
+        if (Settings.instance.chickenContainer.hierarchyCount >= maxChickens)
+            return;
 
-        Quaternion randomRotation = Quaternion.Euler(randomPoint);
-        return randomRotation * player.transform.position; // vec4 * vec3 to apply rotation
-    }
-
-    private static Quaternion GenerateSpawnRotaiton(Vector3 spawnPosition)
-    {
-        Vector3 up = spawnPosition.normalized;
-        Vector3 forward = Random.onUnitSphere;
-        
-        return Quaternion.LookRotation(up, forward);
+        Vector3 pos = new Vector3(Random.Range(boundsMin.x, boundsMax.x), Random.Range(boundsMin.y, boundsMax.y),
+                Random.Range(boundsMin.z, boundsMax.z));
+        float distance = Vector3.Distance(new Vector3(0,0,0), pos);
+        if(distance < 48.5f)
+            Instantiate(chicken, pos, Quaternion.Euler(-90f, Random.Range(0f, 360f), 0f), Settings.instance.chickenContainer);
     }
 }
