@@ -6,6 +6,7 @@ public class cameraFollow : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private Vector3 offset;
+    [SerializeField] private Vector3 rotationOffset;
     [SerializeField] private Transform target;
     [SerializeField] private float translateSpeed;
     [SerializeField] private float rotationSpeed;
@@ -20,11 +21,11 @@ public class cameraFollow : MonoBehaviour
         var targetPosition = target.TransformPoint(offset);
         transform.position = Vector3.Slerp(transform.position, targetPosition, translateSpeed * Time.deltaTime);
     }
+
     private void HandleRotation()
     {
         var direction = target.position - transform.position;
         var rotation = Quaternion.LookRotation(direction,Vector3.up);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
     }
-
 }
