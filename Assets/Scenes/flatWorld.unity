@@ -349,11 +349,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 567d5758b47043f4f9f25f44f225476b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chicken: {fileID: 7781090475184959475, guid: 558111e49efd5ca40ba7315637c67cc2, type: 3}
+  chicken: {fileID: 7547726610539567671, guid: 64b15e3bbd439334696e60dafe344758, type: 3}
   boundsMin: {x: -50, y: 0, z: -50}
   boundsMax: {x: 50, y: 1, z: 50}
   maxChickens: 100
-  spawnTime: 1
+  spawnTime: 0.1
 --- !u!1 &367430141
 GameObject:
   m_ObjectHideFlags: 0

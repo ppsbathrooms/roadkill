@@ -22,6 +22,6 @@ public class ObjectSpawner : MonoBehaviour
                 Random.Range(boundsMin.z, boundsMax.z));
         float distance = Vector3.Distance(new Vector3(0,0,0), pos);
         if(distance < 48.5f)
-            Instantiate(chicken, pos, Quaternion.Euler(-90f, Random.Range(0f, 360f), 0f), Settings.instance.chickenContainer);
+            Instantiate(chicken, pos, Quaternion.Euler(0f, Random.Range(0f, 360f), 0f), Settings.instance.chickenContainer);
     }
 }
