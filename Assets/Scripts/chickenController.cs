@@ -19,7 +19,7 @@ public class ChickenController : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
 
-    private float newAimWeight;
+    private float newAimWeight = 0f;
     private bool canFire = true;
     private bool isAiming;
 
@@ -35,16 +35,15 @@ public class ChickenController : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
 
         Inputs();
-
-
+        
     }
 
     void Inputs() {
        if(verticalInput == 0f) {
-            animator.SetFloat("Speed", 0);
+            animator.SetFloat("Speed", 0f);
         }
         else {
-            animator.SetFloat("Speed", 1);
+            animator.SetFloat("Speed", 1f);
         }
 
         if(Input.GetKeyDown(KeyCode.R)) {
