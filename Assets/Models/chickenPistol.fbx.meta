@@ -1,17 +1,8 @@
 fileFormatVersion: 2
-guid: 6589981cab97ea0459ee012853d1afdb
+guid: 6971fe7a945404241aafdb02b5b4e80a
 ModelImporter:
   serializedVersion: 21202
-  internalIDToNameTable:
-  - first:
-      74: -8783339560967791599
-    second: Chicken|idle
-  - first:
-      74: -4572933847081257997
-    second: Chicken|running
-  - first:
-      74: -2848698099952511497
-    second: Chicken|tpose
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -106,7 +97,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 

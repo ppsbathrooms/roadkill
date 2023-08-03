@@ -1,17 +1,27 @@
+using System;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class chickenController : MonoBehaviour
+public class ChickenController : MonoBehaviour
 {   
     [Header("Settings")]
     [SerializeField, Range(0f, 50f)] private float moveSpeed;
     [SerializeField, Range(0f, 150f)] private float rotationSpeed;
+    [SerializeField] private Vector3 resetPos;
+    [SerializeField] private float aimSpeedMultiplier;
+    [SerializeField] private GameObject pistol;
 
     private Rigidbody rb;
     private Animator animator;
 
     private float horizontalInput;
     private float verticalInput;
+
+    private float newAimWeight;
+    private bool canFire = true;
+    private bool isAiming;
 
     void Start()
     {
@@ -24,11 +34,42 @@ public class chickenController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
+        Inputs();
+
+
+    }
+
+    void Inputs() {
        if(verticalInput == 0f) {
             animator.SetFloat("Speed", 0);
         }
         else {
             animator.SetFloat("Speed", 1);
+        }
+
+        if(Input.GetKeyDown(KeyCode.R)) {
+            transform.position = resetPos;
+        }
+
+        if(Input.GetMouseButton(1)) {
+            isAiming = true;
+            newAimWeight = Mathf.Lerp(newAimWeight, 1f, aimSpeedMultiplier * Time.deltaTime);
+            animator.SetLayerWeight(1, newAimWeight);
+            pistol.SetActive(true);
+            
+        }
+        else {
+            isAiming = false;
+            newAimWeight = Mathf.Lerp(newAimWeight, 0f, aimSpeedMultiplier * Time.deltaTime);
+            animator.SetLayerWeight(1, newAimWeight);
+            pistol.SetActive(false);
+        }
+
+        if(Input.GetMouseButtonDown(0) && isAiming && canFire) {
+            animator.SetFloat("fire", 1);
+        }
+        else {
+            animator.SetFloat("fire", 0);
         }
     }
 
