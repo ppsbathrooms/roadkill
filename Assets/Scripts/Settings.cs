@@ -13,6 +13,8 @@ public class Settings : MonoBehaviour
     public GameObject deathEffect;
     public GameObject featherEffect;
     public GameObject eggEffect;
+    public GameObject muzzleFlash;
+    public GameObject smoke;
     public Transform scene;
 
     [Space] [Header("Containers")] 

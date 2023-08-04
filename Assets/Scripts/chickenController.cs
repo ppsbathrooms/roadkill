@@ -8,6 +8,7 @@ public class ChickenController : MonoBehaviour
     [SerializeField] private Vector3 resetPos;
     [SerializeField] private float aimSpeedMultiplier;
     [SerializeField] private GameObject pistol;
+    [SerializeField] private GameObject pistolEmmitter;
 
     private Rigidbody rb;
     private Animator animator;
@@ -35,6 +36,7 @@ public class ChickenController : MonoBehaviour
     void Inputs()
     {
         float mouseX = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
+        
         transform.Rotate(Vector3.up * mouseX);
 
         if(verticalInput == 0f) {
@@ -68,7 +70,12 @@ public class ChickenController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && isAiming && canFire)
         {
-            animator.SetFloat("fire", 1);
+            animator.SetFloat("fire", 1);           
+            GameObject muzzleFlash = Instantiate(Settings.instance.muzzleFlash, pistolEmmitter.transform.position, pistolEmmitter.transform.rotation, Settings.instance.effectsContainer);
+            GameObject smoke = Instantiate(Settings.instance.smoke, pistolEmmitter.transform.position, pistolEmmitter.transform.rotation, Settings.instance.effectsContainer);
+            Destroy(muzzleFlash, 1f);
+            Destroy(smoke, 1f);
+        
         }
         else
         {
