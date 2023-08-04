@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ChickenController : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class ChickenController : MonoBehaviour
     [SerializeField] private Vector3 resetPos;
     [SerializeField] private float aimSpeedMultiplier;
     [SerializeField] private GameObject pistol;
-    [SerializeField] private GameObject pistolEmmitter;
+    [FormerlySerializedAs("pistolEmmitter")] [SerializeField] private GameObject pistolEmitter;
 
     private Rigidbody rb;
     private Animator animator;
@@ -71,8 +72,8 @@ public class ChickenController : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && isAiming && canFire)
         {
             animator.SetFloat("fire", 1);           
-            GameObject muzzleFlash = Instantiate(Settings.instance.muzzleFlash, pistolEmmitter.transform.position, pistolEmmitter.transform.rotation, Settings.instance.effectsContainer);
-            GameObject smoke = Instantiate(Settings.instance.smoke, pistolEmmitter.transform.position, pistolEmmitter.transform.rotation, Settings.instance.effectsContainer);
+            GameObject muzzleFlash = Instantiate(Settings.instance.muzzleFlash, pistolEmitter.transform.position, pistolEmitter.transform.rotation, Settings.instance.effectsContainer);
+            GameObject smoke = Instantiate(Settings.instance.smoke, pistolEmitter.transform.position, pistolEmitter.transform.rotation, Settings.instance.effectsContainer);
             Destroy(muzzleFlash, 1f);
             Destroy(smoke, 1f);
         

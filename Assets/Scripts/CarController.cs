@@ -1,18 +1,13 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Collidable;
 using UnityEngine;
-using TMPro;
 using UnityEngine.Events;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 
 public class CarController : MonoBehaviour
 {
-    public static CarController instance;
+    public static CarController Instance;
 
-    public static UnityEvent<AbstractCollidableObject> onHitCollidable = new UnityEvent<AbstractCollidableObject>();
+    public static readonly UnityEvent<AbstractCollidableObject> OnHitCollidable = new();
     
     [Header("Refs")]
     [SerializeField] private WheelCollider backLeft;
@@ -44,8 +39,10 @@ public class CarController : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
-        onHitCollidable.AddListener((AbstractCollidableObject collidable) => { PlayerData.eggCount += collidable.eggsWhenHit; });
+        Instance = this;
+        OnHitCollidable.AddListener(collidable => { PlayerData.eggCount += collidable.eggsWhenHit; });
+        
+        gameObject.SetActive(false);
     }
     
     private void Start()
@@ -99,7 +96,7 @@ public class CarController : MonoBehaviour
         if (Input.GetKey(KeyCode.R) || Input.GetKey(KeyCode.Delete))
             Respawn();
 
-        UIManager.instance.UpdateSpeedText(speed);
+        UIManager.Instance.UpdateSpeedText(speed);
     }
 
     void Respawn()
@@ -132,7 +129,7 @@ public class CarController : MonoBehaviour
             if (!collidableObject.onHitByPlayer())
                 return;
             
-            onHitCollidable.Invoke(collidableObject);
+            OnHitCollidable.Invoke(collidableObject);
 
             if (collidableObject.boostWhenHit)
                 Boost();
