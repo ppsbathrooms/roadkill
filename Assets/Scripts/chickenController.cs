@@ -9,7 +9,7 @@ public class ChickenController : MonoBehaviour
     [SerializeField] private Vector3 resetPos;
     [SerializeField] private float aimSpeedMultiplier;
     [SerializeField] private GameObject pistol;
-    [FormerlySerializedAs("pistolEmmitter")] [SerializeField] private GameObject pistolEmitter;
+    [SerializeField] private GameObject pistolEmitter;
 
     private Rigidbody rb;
     private Animator animator;

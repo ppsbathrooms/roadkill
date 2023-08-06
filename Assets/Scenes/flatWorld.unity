@@ -1590,6 +1590,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedText: {fileID: 549478101}
   eggText: {fileID: 954543702}
+  _startGameButton: {fileID: 0}
+  _endGameButton: {fileID: 0}
+  _gameOverScreen: {fileID: 0}
 --- !u!1 &1686871464
 GameObject:
   m_ObjectHideFlags: 0
@@ -1891,8 +1894,8 @@ MonoBehaviour:
   offset: {x: 3.24, y: 1.02, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0}
   target: {fileID: 1686871465}
-  translateSpeed: 10
-  rotationSpeed: 5
+  translateSpeed: 25
+  rotationSpeed: 20
 --- !u!1 &2028648618
 GameObject:
   m_ObjectHideFlags: 0
@@ -2482,12 +2485,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e23e7bd611fd70c4097742ba595e7557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
-  rotationSpeed: 1
+  moveSpeed: 28.3
+  rotationSpeed: 115
   resetPos: {x: 0, y: 1, z: 0}
-  aimSpeedMultiplier: 1
+  aimSpeedMultiplier: 0.7
   pistol: {fileID: 1506694743073125800, guid: 68c027a46435c7a44883b5d4cb08e27c, type: 3}
-  pistolEmmitter: {fileID: 2706588351875090306, guid: 4bccc6d361e26c141acda28984f6bf1c,
+  pistolEmitter: {fileID: 2706588351875090306, guid: 4bccc6d361e26c141acda28984f6bf1c,
     type: 3}
 --- !u!1 &919132148273107551
 GameObject:

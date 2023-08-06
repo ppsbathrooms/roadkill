@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq.Expressions;
 using UnityEngine;
 
 public class SphericalGravity : MonoBehaviour
@@ -14,6 +11,6 @@ public class SphericalGravity : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // rb.velocity += -transform.position.normalized * (9.81f * Time.fixedDeltaTime);
+        //rb.velocity += -transform.position.normalized * (9.81f * Time.fixedDeltaTime);
     }
 }
