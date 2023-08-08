@@ -1852,7 +1852,7 @@ GameObject:
   - component: {fileID: 1913391591}
   m_Layer: 0
   m_Name: mainCamera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2061,7 +2061,7 @@ GameObject:
   - component: {fileID: 2051855828}
   - component: {fileID: 2051855827}
   - component: {fileID: 2051855826}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2200,6 +2200,8 @@ MonoBehaviour:
   muzzleFlash: {fileID: 2706588351875090306, guid: 4bccc6d361e26c141acda28984f6bf1c,
     type: 3}
   smoke: {fileID: 1365276813039416739, guid: f6d01ab59f5f95d42a6d1270877e5035, type: 3}
+  grassHit: {fileID: 6486023004611360702, guid: f3208ede213c32f49821c706ef7f2f1b,
+    type: 3}
   scene: {fileID: 859994640}
   effectsContainer: {fileID: 971110793}
   chickenContainer: {fileID: 753327579}

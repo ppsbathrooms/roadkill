@@ -20,7 +20,6 @@ public class ChickenController : MonoBehaviour
     private bool canFire = true;
     private bool isAiming;
 
-
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -76,7 +75,8 @@ public class ChickenController : MonoBehaviour
             GameObject smoke = Instantiate(Settings.instance.smoke, pistolEmitter.transform.position, pistolEmitter.transform.rotation, Settings.instance.effectsContainer);
             Destroy(muzzleFlash, 1f);
             Destroy(smoke, 1f);
-        
+
+            Shoot();        
         }
         else
         {
@@ -88,5 +88,22 @@ public class ChickenController : MonoBehaviour
     {
         Vector3 moveDirection = transform.forward * verticalInput;
         rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    void Shoot() 
+    {
+        Vector3 rayOrigin = Camera.main.ViewportToWorldPoint (new Vector3(0.5f, 0.5f, 0.0f));
+        RaycastHit hit;
+
+
+        if (Physics.Raycast (rayOrigin, Camera.main.transform.forward, out hit, 50f))
+        {
+            Debug.Log("distance of " + hit.distance);
+            GameObject grassHit = Instantiate(Settings.instance.grassHit, hit.point, Quaternion.Euler(-90, 0, 0), Settings.instance.effectsContainer);
+
+            Destroy(grassHit, 2f);
+
+        }
+
     }
 }

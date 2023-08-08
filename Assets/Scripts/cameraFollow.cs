@@ -35,9 +35,6 @@ public class CameraFollow : MonoBehaviour
 
         yRotation += -Input.GetAxis("Mouse Y") * rotationSpeedY;
         yRotation = Mathf.Clamp(yRotation, yMin, yMax);
-
-        Debug.Log(yRotation);
-
         target.transform.localRotation = Quaternion.Euler(0, 90, yRotation);
     }
 }

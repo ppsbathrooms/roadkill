@@ -12,6 +12,7 @@ public class Settings : MonoBehaviour
     public GameObject eggEffect;
     public GameObject muzzleFlash;
     public GameObject smoke;
+    public GameObject grassHit;
     public Transform scene;
 
     [Space] [Header("Containers")] 
