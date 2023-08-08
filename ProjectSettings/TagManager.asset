@@ -6,6 +6,7 @@ TagManager:
   tags:
   - pollo
   - coop
+  - farmer
   layers:
   - Default
   - TransparentFX

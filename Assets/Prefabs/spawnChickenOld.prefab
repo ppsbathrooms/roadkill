@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6278008768616495853}
   m_Layer: 0
   m_Name: spawnChickenOld
-  m_TagString: Untagged
+  m_TagString: pollo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

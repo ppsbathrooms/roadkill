@@ -21,6 +21,7 @@ namespace Collidable
 
             gameObject.layer = 7;
             return true;
+
         }
 
         protected virtual void SpawnDeathEffects() { }

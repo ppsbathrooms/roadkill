@@ -7,13 +7,16 @@ public class Settings : MonoBehaviour
     public void Awake() { instance = this; }
 
     [Header("Refs")] 
+    public Transform scene;
+
+    [Space] [Header("Particles")] 
     public GameObject deathEffect;
     public GameObject featherEffect;
     public GameObject eggEffect;
     public GameObject muzzleFlash;
     public GameObject smoke;
     public GameObject grassHit;
-    public Transform scene;
+    public GameObject bloodHit;
 
     [Space] [Header("Containers")] 
     public Transform effectsContainer;

@@ -1,5 +1,7 @@
+using System;
+using Collidable;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.Events;
 
 public class ChickenController : MonoBehaviour
 {
@@ -10,13 +12,18 @@ public class ChickenController : MonoBehaviour
     [SerializeField] private float aimSpeedMultiplier;
     [SerializeField] private GameObject pistol;
     [SerializeField] private GameObject pistolEmitter;
+    [SerializeField] private float pistolRange;
+
+
+
+    public static readonly UnityEvent<AbstractCollidableObject> OnHitCollidable = new();
+
 
     private Rigidbody rb;
     private Animator animator;
 
     private float newAimWeight = 0f;
     private float verticalInput;
-
     private bool canFire = true;
     private bool isAiming;
 
@@ -50,6 +57,7 @@ public class ChickenController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             transform.position = resetPos;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
         if (Input.GetMouseButton(1))
@@ -96,14 +104,33 @@ public class ChickenController : MonoBehaviour
         RaycastHit hit;
 
 
-        if (Physics.Raycast (rayOrigin, Camera.main.transform.forward, out hit, 50f))
+        if (Physics.Raycast (rayOrigin, Camera.main.transform.forward, out hit, pistolRange))
         {
-            Debug.Log("distance of " + hit.distance);
-            GameObject grassHit = Instantiate(Settings.instance.grassHit, hit.point, Quaternion.Euler(-90, 0, 0), Settings.instance.effectsContainer);
+            if (hit.collider.tag == "Player")
+                return;
+            else if(hit.collider.tag == "pollo") {
+                GameObject bloodHit = Instantiate(Settings.instance.bloodHit, hit.point, Quaternion.Euler(-90, 0, 0), Settings.instance.effectsContainer);
+                Destroy(bloodHit, 1f);
 
-            Destroy(grassHit, 2f);
-
+                if (hit.collider.transform.TryGetComponent<AbstractCollidableObject>(out AbstractCollidableObject collidableObject))
+                {
+                    if (!collidableObject.onHitByPlayer())
+                        return;
+                    
+                    OnHitCollidable.Invoke(collidableObject);
+                    hit.collider.transform.GetComponent<Rigidbody>().AddForce(transform.forward * 5000 + transform.up * 500);
+                    hit.collider.transform.GetComponent<Rigidbody>().AddTorque(new Vector3(UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360)));
+                }
+            }
+            else if (hit.collider.tag == "farmer") 
+            {
+                GameObject bloodHit = Instantiate(Settings.instance.bloodHit, hit.point, Quaternion.Euler(-90, 0, 0), Settings.instance.effectsContainer);
+                Destroy(bloodHit, 1f);
+            }
+            else {
+                GameObject grassHit = Instantiate(Settings.instance.grassHit, hit.point, Quaternion.Euler(-90, 0, 0), Settings.instance.effectsContainer);
+                Destroy(grassHit, 1f); 
+            }
         }
-
     }
 }

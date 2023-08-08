@@ -346,14 +346,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 331246914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 567d5758b47043f4f9f25f44f225476b, type: 3}
+  m_Script: {fileID: 11500000, guid: 30c257fab4acacc4780040ef1f6d7fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   chicken: {fileID: 7547726610539567671, guid: 64b15e3bbd439334696e60dafe344758, type: 3}
-  boundsMin: {x: -50, y: 0, z: -50}
-  boundsMax: {x: 50, y: 1, z: 50}
-  maxChickens: 100
-  spawnTime: 1
+  boundsMin: {x: -20, y: 0, z: -20}
+  boundsMax: {x: 20, y: 0, z: 20}
+  maxChickens: 500
+  spawnTime: 0.1
 --- !u!1 &367430141
 GameObject:
   m_ObjectHideFlags: 0
@@ -2191,6 +2191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a65e048c308600c49bfeba8d42547418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scene: {fileID: 859994640}
   deathEffect: {fileID: 1940269550785849207, guid: 50b4ed5c6a7c80b4ebb32f472f678eb8,
     type: 3}
   featherEffect: {fileID: 2319230115491359477, guid: e81407f24c52aed498443678065ccb3d,
@@ -2202,7 +2203,8 @@ MonoBehaviour:
   smoke: {fileID: 1365276813039416739, guid: f6d01ab59f5f95d42a6d1270877e5035, type: 3}
   grassHit: {fileID: 6486023004611360702, guid: f3208ede213c32f49821c706ef7f2f1b,
     type: 3}
-  scene: {fileID: 859994640}
+  bloodHit: {fileID: 6486023004611360702, guid: fa8c541ecf003b0479037f289ac8c6d0,
+    type: 3}
   effectsContainer: {fileID: 971110793}
   chickenContainer: {fileID: 753327579}
   coopContainer: {fileID: 1353627792}
@@ -2399,7 +2401,7 @@ GameObject:
   - component: {fileID: 891116365216440946}
   m_Layer: 0
   m_Name: Chicken
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2570,6 +2572,7 @@ MonoBehaviour:
   aimSpeedMultiplier: 10
   pistol: {fileID: 1506694742829662567}
   pistolEmitter: {fileID: 547891457}
+  pistolRange: 100
 --- !u!1 &919132148273107551
 GameObject:
   m_ObjectHideFlags: 0
@@ -2583,7 +2586,7 @@ GameObject:
   - component: {fileID: 919132148273107553}
   m_Layer: 0
   m_Name: farmer
-  m_TagString: Untagged
+  m_TagString: farmer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

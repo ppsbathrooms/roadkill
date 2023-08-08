@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.24379471, g: 0.2497297, b: 0.25209993, a: 1}
+  m_IndirectSpecularColor: {r: 0.466138, g: 0.4658367, b: 0.46192998, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1322,8 +1322,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf8410e5667b174f8f670b5498a6eb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _slowMultiplier: 2
-  _slowTime: 0.3
 --- !u!1 &771988037
 GameObject:
   m_ObjectHideFlags: 0
@@ -1925,6 +1923,7 @@ MonoBehaviour:
     type: 3}
   muzzleFlash: {fileID: 0}
   smoke: {fileID: 0}
+  grassHit: {fileID: 0}
   scene: {fileID: 1023394337}
   effectsContainer: {fileID: 180937936}
   chickenContainer: {fileID: 1933892608}
@@ -4361,10 +4360,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 4, z: -7.5}
-  rotationOffset: {x: 0, y: 0, z: 0}
   target: {fileID: 1643020792}
   translateSpeed: 10
-  rotationSpeed: 10
+  rotationSpeedX: 20
+  rotationSpeedY: 20
 --- !u!114 &1892655456
 MonoBehaviour:
   m_ObjectHideFlags: 0
