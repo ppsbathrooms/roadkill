@@ -6,10 +6,15 @@ public class CameraFollow : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private Vector3 offset;
-    [SerializeField] private Vector3 rotationOffset;
     [SerializeField] private Transform target;
     [SerializeField] private float translateSpeed;
-    [SerializeField] private float rotationSpeed;
+    [SerializeField] private float rotationSpeedX;
+    [SerializeField] private float rotationSpeedY;
+    
+    private float yMin = -20f;
+    private float yMax = 60f;
+    private float yRotation;
+
     private void FixedUpdate()
     {
         HandleTranslation();
@@ -26,6 +31,13 @@ public class CameraFollow : MonoBehaviour
     {
         var direction = target.position - transform.position;
         var rotation = Quaternion.LookRotation(direction,Vector3.up);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeedX * Time.deltaTime);
+
+        yRotation += -Input.GetAxis("Mouse Y") * rotationSpeedY;
+        yRotation = Mathf.Clamp(yRotation, yMin, yMax);
+
+        Debug.Log(yRotation);
+
+        target.transform.localRotation = Quaternion.Euler(0, 90, yRotation);
     }
 }
