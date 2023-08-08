@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -398,7 +398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 547891458}
   m_Layer: 0
-  m_Name: particleEmmitter
+  m_Name: particleEmitter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -922,7 +922,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 971110792}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1891,7 +1891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8572f2e631bc6394c971f57e181cc5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 3.24, y: 1.02, z: 0}
+  offset: {x: 5, y: 1, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0}
   target: {fileID: 1686871465}
   translateSpeed: 25
@@ -2487,11 +2487,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 28.3
   rotationSpeed: 115
-  resetPos: {x: 0, y: 1, z: 0}
-  aimSpeedMultiplier: 0.7
-  pistol: {fileID: 1506694743073125800, guid: 68c027a46435c7a44883b5d4cb08e27c, type: 3}
-  pistolEmitter: {fileID: 2706588351875090306, guid: 4bccc6d361e26c141acda28984f6bf1c,
-    type: 3}
+  resetPos: {x: 0, y: 0, z: 0}
+  aimSpeedMultiplier: 10
+  pistol: {fileID: 1506694742829662567}
+  pistolEmitter: {fileID: 547891457}
 --- !u!1 &919132148273107551
 GameObject:
   m_ObjectHideFlags: 0
