@@ -1850,7 +1850,6 @@ GameObject:
   - component: {fileID: 1913391589}
   - component: {fileID: 1913391588}
   - component: {fileID: 1913391591}
-  - component: {fileID: 1913391592}
   m_Layer: 0
   m_Name: mainCamera
   m_TagString: MainCamera
@@ -1969,26 +1968,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8572f2e631bc6394c971f57e181cc5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 5, y: 0, z: 0}
+  offset: {x: 3.5, y: -1.5, z: 0}
   target: {fileID: 1686871465}
   translateSpeed: 25
   rotationSpeedX: 20
-  rotationSpeedY: 2
---- !u!114 &1913391592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1913391586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1ee1c62c905bb24ea7c9cf3d9d40b56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TraumaExponent: 1
-  MaximumAngularShake: {x: 2, y: 2, z: 2}
-  MaximumTranslationShake: {x: 0.1, y: 0.1, z: 0.1}
+  rotationSpeedY: 0.25
 --- !u!1 &2028648618
 GameObject:
   m_ObjectHideFlags: 0

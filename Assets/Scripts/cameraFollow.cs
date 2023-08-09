@@ -15,6 +15,11 @@ public class CameraFollow : MonoBehaviour
     private float yMax = 60f;
     private float yRotation;
 
+
+    void Update()
+    {
+        yRotation += -Input.GetAxis("Mouse Y") * rotationSpeedY;
+    }
     private void FixedUpdate()
     {
         HandleTranslation();
@@ -33,7 +38,6 @@ public class CameraFollow : MonoBehaviour
         var rotation = Quaternion.LookRotation(direction,Vector3.up);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeedX * Time.deltaTime);
 
-        yRotation += -Input.GetAxis("Mouse Y") * rotationSpeedY;
         yRotation = Mathf.Clamp(yRotation, yMin, yMax);
         target.transform.localRotation = Quaternion.Euler(0, 90, yRotation);
     }
