@@ -27,6 +27,8 @@ public class ChickenController : MonoBehaviour
     private bool canFire = true;
     private bool isAiming;
 
+    private float mouseX;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -42,10 +44,8 @@ public class ChickenController : MonoBehaviour
 
     void Inputs()
     {
-        float mouseX = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
+        mouseX = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
         
-        transform.Rotate(Vector3.up * mouseX);
-
         if(verticalInput == 0f) {
             animator.SetFloat("Speed", 0f);
         }
@@ -96,6 +96,8 @@ public class ChickenController : MonoBehaviour
     {
         Vector3 moveDirection = transform.forward * verticalInput;
         rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+
+        transform.Rotate(Vector3.up * mouseX);
     }
 
     void Shoot() 
