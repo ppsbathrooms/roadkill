@@ -7,7 +7,7 @@ public class ChickenController : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField, Range(0f, 50f)] private float moveSpeed;
-    [SerializeField, Range(0f, 150f)] private float rotationSpeed;
+    [SerializeField, Range(0f, 350f)] private float rotationSpeed;
     [SerializeField] private Vector3 resetPos;
     [SerializeField] private float aimSpeedMultiplier;
     [SerializeField] private GameObject pistol;
@@ -39,12 +39,13 @@ public class ChickenController : MonoBehaviour
     void Update()
     {
         verticalInput = Input.GetAxis("Vertical");
+        mouseX = Input.GetAxis("Mouse X") * rotationSpeed * Time.fixedDeltaTime;
+
         Inputs();
     }
 
     void Inputs()
     {
-        mouseX = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
         
         if(verticalInput == 0f) {
             animator.SetFloat("Speed", 0f);
@@ -63,7 +64,7 @@ public class ChickenController : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             isAiming = true;
-            newAimWeight = Mathf.Lerp(newAimWeight, 1f, aimSpeedMultiplier * Time.deltaTime);
+            newAimWeight = Mathf.Lerp(newAimWeight, 1f, aimSpeedMultiplier * Time.fixedDeltaTime);
             animator.SetLayerWeight(1, newAimWeight);
             pistol.SetActive(true);
 
@@ -71,7 +72,7 @@ public class ChickenController : MonoBehaviour
         else
         {
             isAiming = false;
-            newAimWeight = Mathf.Lerp(newAimWeight, 0f, aimSpeedMultiplier * Time.deltaTime);
+            newAimWeight = Mathf.Lerp(newAimWeight, 0f, aimSpeedMultiplier * Time.fixedDeltaTime);
             animator.SetLayerWeight(1, newAimWeight);
             pistol.SetActive(false);
         }

@@ -1971,8 +1971,8 @@ MonoBehaviour:
   offset: {x: 3.5, y: -1.5, z: 0}
   target: {fileID: 1686871465}
   translateSpeed: 25
-  rotationSpeedX: 20
-  rotationSpeedY: 0.25
+  rotationSpeedX: 40
+  rotationSpeedY: 0.5
 --- !u!1 &2028648618
 GameObject:
   m_ObjectHideFlags: 0
@@ -2567,7 +2567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 28.3
-  rotationSpeed: 115
+  rotationSpeed: 150
   resetPos: {x: 0, y: 0, z: 0}
   aimSpeedMultiplier: 10
   pistol: {fileID: 1506694742829662567}

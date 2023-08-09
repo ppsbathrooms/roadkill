@@ -16,29 +16,22 @@ public class CameraFollow : MonoBehaviour
     private float yRotation;
 
 
+
     void Update()
     {
         yRotation += -Input.GetAxis("Mouse Y") * rotationSpeedY;
+        yRotation = Mathf.Clamp(yRotation, yMin, yMax);
+
     }
     private void FixedUpdate()
     {
-        HandleTranslation();
-        HandleRotation();
-    }
-
-    private void HandleTranslation()
-    {
         var targetPosition = target.TransformPoint(offset);
-        transform.position = Vector3.Slerp(transform.position, targetPosition, translateSpeed * Time.deltaTime);
-    }
+        transform.position = Vector3.Slerp(transform.position, targetPosition, translateSpeed * Time.fixedDeltaTime);
 
-    private void HandleRotation()
-    {
         var direction = target.position - transform.position;
         var rotation = Quaternion.LookRotation(direction,Vector3.up);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeedX * Time.deltaTime);
 
-        yRotation = Mathf.Clamp(yRotation, yMin, yMax);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeedX * Time.fixedDeltaTime);
         target.transform.localRotation = Quaternion.Euler(0, 90, yRotation);
     }
 }
