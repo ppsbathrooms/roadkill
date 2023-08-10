@@ -24,6 +24,7 @@ public class ChickenController : MonoBehaviour
 
     private float newAimWeight = 0f;
     private float verticalInput;
+    private float horizontalInput;
     private bool canFire = true;
     private bool isAiming;
 
@@ -39,6 +40,7 @@ public class ChickenController : MonoBehaviour
     void Update()
     {
         verticalInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxis("Horizontal");
         mouseX = Input.GetAxis("Mouse X") * rotationSpeed * Time.fixedDeltaTime;
 
         Inputs();
@@ -95,7 +97,7 @@ public class ChickenController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 moveDirection = transform.forward * verticalInput;
+        Vector3 moveDirection = (transform.forward * verticalInput) + (transform.right * horizontalInput * 0.25f);
         rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
 
         transform.Rotate(Vector3.up * mouseX);
