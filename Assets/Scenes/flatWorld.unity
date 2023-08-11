@@ -2632,9 +2632,9 @@ MonoBehaviour:
   rotationSpeed: 150
   resetPos: {x: 0, y: 0, z: 0}
   aimSpeedMultiplier: 10
+  pistolRange: 200
   pistol: {fileID: 1506694742829662567}
   pistolEmitter: {fileID: 547891457}
-  pistolRange: 200
 --- !u!1 &919132148273107551
 GameObject:
   m_ObjectHideFlags: 0

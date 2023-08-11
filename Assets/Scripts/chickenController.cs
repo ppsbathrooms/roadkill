@@ -10,14 +10,13 @@ public class ChickenController : MonoBehaviour
     [SerializeField, Range(0f, 350f)] private float rotationSpeed;
     [SerializeField] private Vector3 resetPos;
     [SerializeField] private float aimSpeedMultiplier;
+    [SerializeField] private float pistolRange;
+    
+    [Header("Refs")]
     [SerializeField] private GameObject pistol;
     [SerializeField] private GameObject pistolEmitter;
-    [SerializeField] private float pistolRange;
-
-
 
     public static readonly UnityEvent<AbstractCollidableObject> OnHitCollidable = new();
-
 
     private Rigidbody rb;
     private Animator animator;
@@ -25,6 +24,9 @@ public class ChickenController : MonoBehaviour
     private float newAimWeight = 0f;
     private float verticalInput;
     private float horizontalInput;
+    private float aimFOV = 50f;
+
+    private float currentFOV;
     private bool canFire = true;
     private bool isAiming;
 
@@ -35,6 +37,7 @@ public class ChickenController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        currentFOV = Camera.main.fieldOfView;
     }
 
     void Update()
@@ -44,6 +47,8 @@ public class ChickenController : MonoBehaviour
         mouseX = Input.GetAxis("Mouse X") * rotationSpeed * Time.fixedDeltaTime;
 
         Inputs();
+
+        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, currentFOV, Time.deltaTime * 5);
     }
 
     void Inputs()
@@ -69,7 +74,8 @@ public class ChickenController : MonoBehaviour
             newAimWeight = Mathf.Lerp(newAimWeight, 1f, aimSpeedMultiplier * Time.fixedDeltaTime);
             animator.SetLayerWeight(1, newAimWeight);
             pistol.SetActive(true);
-
+            
+            currentFOV = aimFOV;
         }
         else
         {
@@ -77,6 +83,8 @@ public class ChickenController : MonoBehaviour
             newAimWeight = Mathf.Lerp(newAimWeight, 0f, aimSpeedMultiplier * Time.fixedDeltaTime);
             animator.SetLayerWeight(1, newAimWeight);
             pistol.SetActive(false);
+
+            currentFOV = 60f;
         }
 
         if (Input.GetMouseButtonDown(0) && isAiming && canFire)
