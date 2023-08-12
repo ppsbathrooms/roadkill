@@ -3,7 +3,7 @@ using Collidable;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ChickenController : MonoBehaviour
+public class chickenController : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField, Range(0f, 50f)] private float moveSpeed;
