@@ -1,4 +1,3 @@
-using System;
 using Collidable;
 using TMPro;
 using UnityEngine;
