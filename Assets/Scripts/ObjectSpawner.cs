@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Pool;
 using Random = UnityEngine.Random;
 
 public class ObjectSpawner : MonoBehaviour {
@@ -10,17 +11,17 @@ public class ObjectSpawner : MonoBehaviour {
         Instance = this;
     }
 
-    [Header("General")] [SerializeField] private ObjectToSpawn[] objectsToSpawn;
+    [Header("General"), SerializeField] private ObjectToSpawn[] objectsToSpawn;
     [SerializeField] private float maxSpawnDistanceFromPlayer;
     [SerializeField] private bool sphere = false;
     [SerializeField] private Transform player;
 
-    [Space, Header("Flat World Spawning")] [SerializeField]
+    [Space, Header("Flat World Spawning"), SerializeField]
     private Vector3 boundsMin;
 
     [SerializeField] private Vector3 boundsMax;
 
-    [Space, Header("Sphere World Spawning")] [SerializeField]
+    [Space, Header("Sphere World Spawning"), SerializeField]
     private Transform planet;
 
     private float planetRadius;
@@ -43,6 +44,14 @@ public class ObjectSpawner : MonoBehaviour {
         public int maxAllowed;
         public float timeBetweenSpawns;
 
+        private ObjectPool<GameObject> objectPool;
+
+        public ObjectToSpawn() {
+            objectPool = new ObjectPool<GameObject>(() => Instantiate(prefab, parent),
+                o => o.SetActive(true), o => o.SetActive(false),
+                Destroy, defaultCapacity: 100);
+        }
+
         public IEnumerator SpawnCycle(Func<Vector3> getNextPos, Func<Vector3, Quaternion> getNextRotation) {
             while (true) {
                 yield return new WaitForSeconds(timeBetweenSpawns);
@@ -50,10 +59,9 @@ public class ObjectSpawner : MonoBehaviour {
                 if (parent.childCount >= maxAllowed)
                     continue;
 
-                Vector3 pos = getNextPos.Invoke();
-                Quaternion rotation = getNextRotation.Invoke(pos);
-
-                Instantiate(prefab, pos, rotation, parent);
+                var obj = objectPool.Get();
+                obj.transform.position = getNextPos.Invoke();
+                obj.transform.rotation = getNextRotation.Invoke(obj.transform.position);
             }
         }
     }
