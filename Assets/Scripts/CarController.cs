@@ -2,6 +2,7 @@ using System;
 using Collidable;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class CarController : MonoBehaviour
 {
@@ -42,7 +43,8 @@ public class CarController : MonoBehaviour
         Instance = this;
         OnHitCollidable.AddListener(collidable => { PlayerData.eggCount += collidable.eggsWhenHit; });
         
-        gameObject.SetActive(false);
+        if (SceneManager.GetActiveScene().name == "TestingMap")
+            gameObject.SetActive(false);
     }
     
     private void Start()

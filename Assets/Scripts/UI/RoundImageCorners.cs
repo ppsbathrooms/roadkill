@@ -34,7 +34,7 @@ namespace UI {
         private void Start() {
             GetMaterial();
 
-            targetGraphic.material = _material;
+            targetGraphic.material = _material; 
 
             if (TryGetComponent<HoverEventListener>(out var listener))
                 listener.ImageUpdater = this;
