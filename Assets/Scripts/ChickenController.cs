@@ -10,6 +10,7 @@ public class ChickenController : MonoBehaviour
     [SerializeField] private Vector3 resetPos;
     [SerializeField] private float aimSpeedMultiplier;
     [SerializeField] private float pistolRange;
+    [SerializeField] private float recoilForce;
     
     [Header("Refs")]
     [SerializeField] private GameObject pistol;
@@ -110,11 +111,16 @@ public class ChickenController : MonoBehaviour
         transform.Rotate(Vector3.up * mouseX);
     }
 
+    private void ApplyRecoilForce() {
+        GetComponent<Rigidbody>().AddForce(-transform.forward * recoilForce);
+    }
+
     void Shoot() 
     {
         Vector3 rayOrigin = Camera.main.ViewportToWorldPoint (new Vector3(0.5f, 0.5f, 0.0f));
         RaycastHit hit;
 
+        ApplyRecoilForce();
 
         if (Physics.Raycast (rayOrigin, Camera.main.transform.forward, out hit, pistolRange))
         {
