@@ -67,7 +67,7 @@ public class ChickenController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.LeftShift))
         {
             isAiming = true;
             newAimWeight = Mathf.Lerp(newAimWeight, 1f, aimSpeedMultiplier * Time.fixedDeltaTime);
