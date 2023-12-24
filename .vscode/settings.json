@@ -52,5 +52,6 @@
         "temp/":true,
         "Temp/":true
     },
-    "dotnet.defaultSolution": "rossy-coad.sln"
+    "dotnet.defaultSolution": "rossy-coad.sln",
+    "dotnet.preferCSharpExtension": true
 }
