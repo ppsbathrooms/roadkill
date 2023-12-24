@@ -1,6 +1,7 @@
 using System;
 using Collidable;
 using UnityEngine;
+using UnityEngine.Android;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
@@ -49,7 +50,6 @@ public class CarController : MonoBehaviour
     
     private void Start()
     {
-        transform.position = carSpawn;
         brakeLights.SetActive(false);
     }
 
@@ -120,8 +120,8 @@ public class CarController : MonoBehaviour
         wheelShift = Quaternion.Euler(0f, left ? 270f : 90f, 0f);
         Quaternion newRotation = rotation * wheelShift;
 
-        trans.position = position;
-        trans.rotation = newRotation;
+        /*trans.position = position;
+        trans.rotation = newRotation;*/ // TODO: fix for combine
     }
 
     private void OnCollisionEnter(Collision collision)
