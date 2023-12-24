@@ -1,7 +1,6 @@
 using System;
 using Collidable;
 using UnityEngine;
-using UnityEngine.Android;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +9,7 @@ public class CarController : MonoBehaviour
     public static CarController Instance;
 
     public static readonly UnityEvent<AbstractCollidableObject> OnHitCollidable = new();
-    
+
     [Header("Refs")]
     [SerializeField] private WheelCollider backLeft;
     [SerializeField] private WheelCollider backRight;
@@ -25,14 +24,21 @@ public class CarController : MonoBehaviour
     [SerializeField] private GameObject brakeLights;
     [SerializeField] private Rigidbody rb;
 
-    [Space] [Header("Settings")]
+    [Space]
+    [Header("Settings")]
     [SerializeField, Range(0f, 400f)] private float polloMultiplier = 200f;
     [SerializeField, Range(0f, 1f)] private float boostMultiplier = .25f;
     [SerializeField, Range(0f, 1500f)] private float acceleration = 750f;
     [SerializeField, Range(0f, 500f)] private float breakingForce = 300f;
     [SerializeField, Range(0f, 180f)] private float maxTurnAngle = 15f;
+
+    [SerializeField, Range(0f, 360f)] private float rollerRotationSpeed = 180f;
+
+    [SerializeField] private GameObject rollerFront;
+    [SerializeField] private GameObject rollerBack;
+    [Space]
     [SerializeField] private Vector3 carSpawn;
-    
+
     private float currentAcceleration = 0f;
     private float currentBreakForce = 0f;
     private float currentTurnAngle = 0f;
@@ -43,14 +49,15 @@ public class CarController : MonoBehaviour
     {
         Instance = this;
         OnHitCollidable.AddListener(collidable => { PlayerData.eggCount += collidable.eggsWhenHit; });
-        
+
         if (SceneManager.GetActiveScene().name == "TestingMap")
             gameObject.SetActive(false);
     }
-    
+
     private void Start()
     {
         brakeLights.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void FixedUpdate()
@@ -70,16 +77,15 @@ public class CarController : MonoBehaviour
         frontLeft.brakeTorque = currentBreakForce;
         backRight.brakeTorque = currentBreakForce;
         backLeft.brakeTorque = currentBreakForce;
-
         currentTurnAngle = maxTurnAngle * Input.GetAxis("Horizontal");
         frontRight.steerAngle = currentTurnAngle;
         frontLeft.steerAngle = currentTurnAngle;
 
-        UpdateWheel(frontRight, frontRightTransform, false);
-        UpdateWheel(backRight, backRightTransform, false);
+        UpdateWheel(frontRight, frontRightTransform);
+        UpdateWheel(backRight, backRightTransform);
 
-        UpdateWheel(frontLeft, frontLeftTransform, true);
-        UpdateWheel(backLeft, backLeftTransform, true);
+        UpdateWheel(frontLeft, frontLeftTransform);
+        UpdateWheel(backLeft, backLeftTransform);
     }
 
     private void Update()
@@ -94,11 +100,15 @@ public class CarController : MonoBehaviour
             currentBreakForce = 0f;
             brakeLights.SetActive(false);
         }
-        
+
         if (Input.GetKey(KeyCode.R) || Input.GetKey(KeyCode.Delete))
             Respawn();
 
         UIManager.Instance.UpdateSpeedText(speed);
+
+        rollerFront.transform.Rotate(Vector3.right, rollerRotationSpeed * Time.deltaTime);
+
+        rollerBack.transform.Rotate(Vector3.right, -rollerRotationSpeed * Time.deltaTime);
     }
 
     void Respawn()
@@ -113,15 +123,15 @@ public class CarController : MonoBehaviour
         rb.AddForce(transform.forward * boostMultiplier * 3.6f, ForceMode.VelocityChange);
     }
 
-    void UpdateWheel(WheelCollider col, Transform trans, Boolean left)
+    void UpdateWheel(WheelCollider col, Transform trans)
     {
         col.GetWorldPose(out Vector3 position, out Quaternion rotation);
 
-        wheelShift = Quaternion.Euler(0f, left ? 270f : 90f, 0f);
+        wheelShift = Quaternion.Euler(0f, 0f, 0f);
         Quaternion newRotation = rotation * wheelShift;
 
-        /*trans.position = position;
-        trans.rotation = newRotation;*/ // TODO: fix for combine
+        trans.position = position;
+        trans.rotation = newRotation;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -130,15 +140,15 @@ public class CarController : MonoBehaviour
         {
             if (!collidableObject.onHitByPlayer())
                 return;
-            
+
             OnHitCollidable.Invoke(collidableObject);
 
             if (collidableObject.boostWhenHit)
                 Boost();
-            
+
             Vector3 carVel = rb.velocity;
-            collision.transform.GetComponent<Rigidbody>().AddForce(carVel * polloMultiplier 
-                    + transform.up * (polloMultiplier/2*carVel.magnitude) );
+            collision.transform.GetComponent<Rigidbody>().AddForce(carVel * polloMultiplier
+                    + transform.up * (polloMultiplier / 2 * carVel.magnitude));
         }
     }
 }
