@@ -10,7 +10,7 @@ public class Settings : MonoBehaviour
     public Transform scene;
 
     [Space]
-    [Header("Particles")]
+    [Header("Effects")]
     public GameObject deathEffect;
     public GameObject featherEffect;
     public GameObject eggEffect;

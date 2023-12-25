@@ -136,7 +136,7 @@ public class CarController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.TryGetComponent<AbstractCollidableObject>(out AbstractCollidableObject collidableObject))
+        if (collision.transform.TryGetComponent(out AbstractCollidableObject collidableObject))
         {
             if (!collidableObject.onHitByPlayer())
                 return;
@@ -149,6 +149,10 @@ public class CarController : MonoBehaviour
             Vector3 carVel = rb.velocity;
             collision.transform.GetComponent<Rigidbody>().AddForce(carVel * polloMultiplier
                     + transform.up * (polloMultiplier / 2 * carVel.magnitude));
+        }
+
+        if (collision.transform.TryGetComponent(out BreakableObject breakableObject)) {
+            breakableObject.TriggerDestroy();
         }
     }
 }
