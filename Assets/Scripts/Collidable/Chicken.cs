@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,7 +8,9 @@ namespace Collidable
     {
         private NavMeshAgent agent;
         private Vector3 randomDestination;
-        public float wanderRadius = 5f;
+        private float wanderRadius = 5f;
+
+        private bool dead;
 
         private void Start()
         {
@@ -29,11 +32,15 @@ namespace Collidable
 
         private void Update()
         {
-            WanderAround();
+            if (!dead)
+                WanderAround();
         }
 
-        protected override void SpawnDeathEffects()
-        {
+        protected override void SpawnDeathEffects() {
+            dead = true;
+            agent.enabled = false;
+            GetComponent<Animator>().enabled = false;
+            
             base.SpawnDeathEffects();
             Instantiate(Settings.instance.deathEffect, transform.position, Quaternion.Euler(new Vector3(-90, 0, 0)), transform);
             GameObject feather = Instantiate(Settings.instance.featherEffect, transform.position, Quaternion.Euler(new Vector3(-90, 0, 0)));

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Collidable;
 using UnityEngine;
 
@@ -13,7 +11,7 @@ public class CombineHitEffect : MonoBehaviour
                 out AbstractCollidableObject collidableObject))
         {
             Destroy(Instantiate(Settings.instance.deathEffect,
-                    spawnPosition.position, spawnPosition.rotation, Settings.instance.effectsContainer), 2f
+                    spawnPosition.position, spawnPosition.rotation, transform), 2f
             );
             Destroy(Instantiate(Settings.instance.featherEffect,
                     spawnPosition.position, spawnPosition.rotation, Settings.instance.effectsContainer), 2f
