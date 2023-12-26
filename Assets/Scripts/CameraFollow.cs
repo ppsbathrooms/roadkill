@@ -14,7 +14,7 @@ public class CameraFollow : MonoBehaviour
 
     [Space]
     [Header("Refs")]
-    [SerializeField] private Transform target;
+    public Transform target;
 
 
     private float yRotation;

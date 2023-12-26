@@ -1,6 +1,7 @@
 using Collidable;
 using TMPro;
 using UnityEngine;
+using Vehicles.Controllers;
 
 public class UIManager : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        CarController.OnHitCollidable.AddListener(UpdateEggText);
+        VehicleController.OnHitCollidable.AddListener(UpdateEggText);
     }
 
     public void UpdateEggText(AbstractCollidableObject collidableObject)

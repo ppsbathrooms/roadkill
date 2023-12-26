@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Util;
+using Vehicles.Controllers;
 using Random = UnityEngine.Random;
 
 public class SphereObjectSpawner : MonoBehaviour
@@ -49,7 +50,7 @@ public class SphereObjectSpawner : MonoBehaviour
     {
         planetRadius = _planet.transform.localScale.x*5f;
         maxSpawnAngleFromPlayer = _maxSpawnDistanceFromPlayer / planetRadius * Mathf.Rad2Deg;
-        player = CarController.Instance.transform;
+        player = VehicleController.Instance.transform;
     }
 
     private List<Coroutine> _spawnCycles = new();
