@@ -3,8 +3,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-namespace Vehicles.Controllers {
-    public  class VehicleController : MonoBehaviour
+namespace Vehicles.Controllers
+{
+    public class VehicleController : MonoBehaviour
     {
         public static VehicleController Instance;
 
@@ -20,11 +21,11 @@ namespace Vehicles.Controllers {
         [SerializeField] private Transform backRightTransform;
         [SerializeField] private Transform frontLeftTransform;
         [SerializeField] private Transform frontRightTransform;
-    
+
         [SerializeField] private Transform camTarget;
 
         [SerializeField] private Rigidbody rb;
-    
+
         [Space]
         [Header("Settings")]
         [SerializeField, Range(0f, 400f)] private float polloMultiplier = 200f;
@@ -32,8 +33,9 @@ namespace Vehicles.Controllers {
         [SerializeField, Range(0f, 1500f)] private float acceleration = 750f;
         [SerializeField, Range(0f, 500f)] private float breakingForce = 300f;
         [SerializeField, Range(0f, 180f)] private float maxTurnAngle = 15f;
-    
-        [Space]
+        [SerializeField] private Vector3 wheelOffset;
+        [SerializeField] private bool invertLeftWheels;
+
         [SerializeField] private Vector3 carSpawn;
 
         private float currentAcceleration;
@@ -77,18 +79,21 @@ namespace Vehicles.Controllers {
             frontRight.steerAngle = currentTurnAngle;
             frontLeft.steerAngle = currentTurnAngle;
 
-            UpdateWheel(frontRight, frontRightTransform);
-            UpdateWheel(backRight, backRightTransform);
+            UpdateWheel(frontRight, frontRightTransform, invertLeftWheels);
+            UpdateWheel(backRight, backRightTransform, invertLeftWheels);
 
-            UpdateWheel(frontLeft, frontLeftTransform);
-            UpdateWheel(backLeft, backLeftTransform);
+            UpdateWheel(frontLeft, frontLeftTransform, false);
+            UpdateWheel(backLeft, backLeftTransform, false);
         }
 
-        protected void Update() {
-            if (Input.GetKeyDown(KeyCode.Space)) {
+        protected void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
                 currentBreakForce = breakingForce;
             }
-            else if (Input.GetKeyUp(KeyCode.Space)) {
+            else if (Input.GetKeyUp(KeyCode.Space))
+            {
                 currentBreakForce = 0f;
             }
 
@@ -110,11 +115,10 @@ namespace Vehicles.Controllers {
             rb.AddForce(transform.forward * boostMultiplier * 3.6f, ForceMode.VelocityChange);
         }
 
-        void UpdateWheel(WheelCollider col, Transform trans)
+        void UpdateWheel(WheelCollider col, Transform trans, bool invertLeft)
         {
             col.GetWorldPose(out Vector3 position, out Quaternion rotation);
-
-            wheelShift = Quaternion.Euler(0f, 0f, 0f);
+            wheelShift = Quaternion.Euler(wheelOffset.x, invertLeft ? wheelOffset.y : -wheelOffset.y, wheelOffset.z);
             Quaternion newRotation = rotation * wheelShift;
 
             trans.position = position;
@@ -138,19 +142,23 @@ namespace Vehicles.Controllers {
                                                                        + transform.up * (polloMultiplier / 2 * carVel.magnitude));
             }
 
-            if (collision.transform.TryGetComponent(out BreakableObject breakableObject)) {
+            if (collision.transform.TryGetComponent(out BreakableObject breakableObject))
+            {
                 breakableObject.TriggerDestroy();
             }
         }
 
-        public void Enable() {
+        public void Enable()
+        {
             gameObject.SetActive(true);
-            if (Camera.main!.TryGetComponent(out CameraFollow camFollow)) {
+            if (Camera.main!.TryGetComponent(out CameraFollow camFollow))
+            {
                 camFollow.target = camTarget;
             }
         }
 
-        public void Disable() {
+        public void Disable()
+        {
             gameObject.SetActive(false);
         }
     }
