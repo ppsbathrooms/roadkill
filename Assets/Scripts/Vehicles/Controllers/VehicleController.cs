@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace Vehicles.Controllers
 {
-    public class VehicleController : MonoBehaviour
+    public abstract class VehicleController : MonoBehaviour
     {
         public static VehicleController Instance;
 
@@ -36,7 +36,7 @@ namespace Vehicles.Controllers
         [SerializeField] private Vector3 wheelOffset;
         [SerializeField] private bool invertLeftWheels;
 
-        [SerializeField] private Vector3 carSpawn;
+        [SerializeField] private Vector3 carSpawn = new(0, 2, 0);
 
         private float currentAcceleration;
         private float currentBreakForce;
@@ -47,16 +47,27 @@ namespace Vehicles.Controllers
         private void Awake()
         {
             Instance = this;
-            OnHitCollidable.AddListener(collidable => { PlayerData.eggCount += collidable.eggsWhenHit; });
+            OnHitCollidable.AddListener(collidable => { PlayerData.EggCount += collidable.eggsWhenHit; });
 
             if (SceneManager.GetActiveScene().name == "TestingMap")
                 gameObject.SetActive(false);
         }
 
-        protected void Start()
+        private void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
+            if (Camera.main!.TryGetComponent(out CameraFollow camFollow))
+            {
+                camFollow.target = camTarget;
+            }
+            else Debug.LogError("Could Not Find CameraFollow Instance");
+            
+            Respawn();
+            
+            CustomVehicleStart();
         }
+
+        protected virtual void CustomVehicleStart() { }
 
         private void FixedUpdate()
         {
@@ -86,7 +97,7 @@ namespace Vehicles.Controllers
             UpdateWheel(backLeft, backLeftTransform, false);
         }
 
-        protected void Update()
+        private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -100,8 +111,13 @@ namespace Vehicles.Controllers
             if (Input.GetKey(KeyCode.R) || Input.GetKey(KeyCode.Delete))
                 Respawn();
 
-            UIManager.Instance.UpdateSpeedText(speed);
+            HUDController.Instance.UpdateSpeedText(speed);
+
+            CustomVehicleUpdate();
         }
+        
+        protected virtual void CustomVehicleUpdate() { }
+
 
         void Respawn()
         {
@@ -146,20 +162,6 @@ namespace Vehicles.Controllers
             {
                 breakableObject.TriggerDestroy();
             }
-        }
-
-        public void Enable()
-        {
-            gameObject.SetActive(true);
-            if (Camera.main!.TryGetComponent(out CameraFollow camFollow))
-            {
-                camFollow.target = camTarget;
-            }
-        }
-
-        public void Disable()
-        {
-            gameObject.SetActive(false);
         }
     }
 }

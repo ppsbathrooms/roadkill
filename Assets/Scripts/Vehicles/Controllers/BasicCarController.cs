@@ -8,13 +8,11 @@ namespace Vehicles.Controllers
 
         [SerializeField] private GameObject brakeLights;
 
-        protected new void Start()
-        {
+        protected override void CustomVehicleStart() {
             brakeLights.SetActive(false);
         }
 
-        protected new void Update()
-        {
+        protected override void CustomVehicleUpdate() {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 brakeLights.SetActive(true);

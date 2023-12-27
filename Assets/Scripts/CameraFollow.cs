@@ -25,6 +25,9 @@ public class CameraFollow : MonoBehaviour
 
     void Update()
     {
+        if (target == null)
+            return;
+        
         yRotation += -Input.GetAxis("Mouse Y") * rotationSpeedY;
         xRotation += Input.GetAxis("Mouse X") * rotationSpeedX;
         yRotation = Mathf.Clamp(yRotation, yMin, yMax);
@@ -32,8 +35,10 @@ public class CameraFollow : MonoBehaviour
         RayGroundCollision();
     }
 
-    private void FixedUpdate()
-    {
+    private void FixedUpdate() {
+        if (target == null)
+            return;
+        
         var targetPosition = target.TransformPoint(offset.x - cameraOffset, offset.y, offset.z);
         transform.position = Vector3.Slerp(transform.position, targetPosition, translateSpeed * Time.fixedDeltaTime);
 

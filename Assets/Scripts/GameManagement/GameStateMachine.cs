@@ -46,17 +46,17 @@ namespace GameManagement {
         }
         
         public class PreGame : GameState {
-            public void Start() { UIManager.Instance.StartGameButton.SetActive(true); }
+            public void Start() { HUDController.Instance.StartGameButton.SetActive(true); }
             public void Update() { }
 
-            public void End() { UIManager.Instance.StartGameButton.SetActive(false); }
+            public void End() { HUDController.Instance.StartGameButton.SetActive(false); }
         }
         
         public class Gameplay : GameState {
             public void Start() {
                 SphereObjectSpawner.Instance.StartSpawning();
                 VehicleController.Instance.gameObject.SetActive(true);
-                UIManager.Instance.EndGameButton.SetActive(true);
+                HUDController.Instance.EndGameButton.SetActive(true);
             }
             
             public void Update() { }
@@ -64,7 +64,7 @@ namespace GameManagement {
             public void End() {
                 SphereObjectSpawner.Instance.StopSpawning();
                 VehicleController.Instance.gameObject.SetActive(false);
-                UIManager.Instance.EndGameButton.SetActive(false);
+                HUDController.Instance.EndGameButton.SetActive(false);
                 foreach (Transform chicken in Settings.instance.chickenContainer) {
                     UnityEngine.Object.Destroy(chicken.gameObject);
                 }
@@ -75,7 +75,7 @@ namespace GameManagement {
         }
 
         public class EndScreen : GameState {
-            public void Start() { UIManager.Instance.GameOverScreen.SetActive(true); }
+            public void Start() { HUDController.Instance.GameOverScreen.SetActive(true); }
             public void Update() { }
             public void End() { }
         }

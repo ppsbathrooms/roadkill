@@ -1,10 +1,16 @@
+using System;
 using UnityEngine;
 using Vehicles.Controllers;
 
 namespace GameManagement
 {
-    public class GameRunner : MonoBehaviour
-    {
+    public class GameRunner : MonoBehaviour {
+        public static GameRunner Instance;
+
+        private void Awake() {
+            Instance = this;
+        }
+
         [SerializeField] private VehicleController normalCar;
         [SerializeField] private VehicleController combine;
 
@@ -15,17 +21,25 @@ namespace GameManagement
         void Start()
         {
             _activeVehicle = combine;
-            //GameStateMachine.SetState<GameStateMachine.PreGame>(); TODO: fix for new gameplay
+            //GameStateMachine.SetState<GameStateMachine.PreGame>(); TODO: fix state machine for new gameplay
         }
 
         void Update()
         {
-            //GameStateMachine.UpdateCurrentState(); TODO: fix for new gameplay
-
-            if (Input.GetKeyDown(KeyCode.Tab)) ToggleVehicle();
+            //GameStateMachine.UpdateCurrentState(); TODO: fix state machine for new gameplay
         }
 
-        private void ToggleVehicle()
+        public void SpawnVehicle(GameObject prefab) {
+            RemoveCurrentVehicle();
+            _activeVehicle = Instantiate(prefab).GetComponent<VehicleController>();
+        }
+
+        public void RemoveCurrentVehicle() {
+            if (_activeVehicle != null) 
+                Destroy(_activeVehicle.gameObject);
+        }
+
+        /*private void ToggleVehicle()
         {
             combineActive = !combineActive;
             _activeVehicle.Disable();
@@ -40,6 +54,6 @@ namespace GameManagement
             }
 
             _activeVehicle.Enable();
-        }
+        }*/
     }
 }

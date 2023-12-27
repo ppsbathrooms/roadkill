@@ -3,9 +3,9 @@ using TMPro;
 using UnityEngine;
 using Vehicles.Controllers;
 
-public class UIManager : MonoBehaviour
+public class HUDController : MonoBehaviour
 {
-    public static UIManager Instance;
+    public static HUDController Instance;
 
     private void Awake() { Instance = this; }
 
@@ -21,14 +21,9 @@ public class UIManager : MonoBehaviour
     public GameObject EndGameButton => _endGameButton;
     public GameObject GameOverScreen => _gameOverScreen;
 
-    private void Start()
+    public void UpdateEggText()
     {
-        VehicleController.OnHitCollidable.AddListener(UpdateEggText);
-    }
-
-    public void UpdateEggText(AbstractCollidableObject collidableObject)
-    {
-        eggText.text = PlayerData.eggCount.ToString();
+        eggText.text = PlayerData.EggCount.ToString();
     }
     
     public void UpdateSpeedText(float speed)
