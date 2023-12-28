@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f04325427faf3948862f3566e309fad, type: 3}
+  m_Name: CombineSpikey
+  m_EditorClassIdentifier: 
+  _itemName: Combine Spikey
+  _itemImage: {fileID: 21300000, guid: 99dbeeff9b2e81a49b256ff0e0886109, type: 3}
+  _itemPrefab: {fileID: 855082532081029751, guid: d66a0cc61eef37c4bad9b2dccb8fcf62,
+    type: 3}
+  _itemCost: 0
+  _combineAttachment: 1

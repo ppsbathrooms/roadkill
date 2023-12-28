@@ -4,19 +4,20 @@ using Vehicles.Controllers;
 
 namespace GameManagement
 {
-    public class GameRunner : MonoBehaviour {
+    public class GameRunner : MonoBehaviour
+    {
         public static GameRunner Instance;
 
-        private void Awake() {
+        private void Awake()
+        {
             Instance = this;
         }
-
         [SerializeField] private VehicleController normalCar;
         [SerializeField] private VehicleController combine;
 
-        private VehicleController _activeVehicle;
+        public VehicleController _activeVehicle;
 
-        private bool combineActive = true;
+        // private bool combineActive = true;
 
         void Start()
         {
@@ -29,14 +30,22 @@ namespace GameManagement
             //GameStateMachine.UpdateCurrentState(); TODO: fix state machine for new gameplay
         }
 
-        public void SpawnVehicle(GameObject prefab) {
+        public void SpawnVehicle(GameObject prefab)
+        {
             RemoveCurrentVehicle();
             _activeVehicle = Instantiate(prefab).GetComponent<VehicleController>();
         }
 
-        public void RemoveCurrentVehicle() {
-            if (_activeVehicle != null) 
+        public void RemoveCurrentVehicle()
+        {
+            if (_activeVehicle != null)
                 Destroy(_activeVehicle.gameObject);
+        }
+
+        public void BuyAttachment(GameObject prefab, Sprite image)
+        {
+            HUDController.Instance.UpdateEquipment(image);
+            // GameObject combineAttachment = Instantiate()
         }
 
         /*private void ToggleVehicle()

@@ -8,6 +8,7 @@ TagManager:
   - coop
   - farmer
   - scene
+  - hotbarImage
   layers:
   - Default
   - TransparentFX

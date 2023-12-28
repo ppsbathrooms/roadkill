@@ -1,36 +1,93 @@
 using GameManagement;
 using TMPro;
 using UI.Event_Listeners;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using Vehicles.Controllers;
 
-namespace UI {
-    public class ShopItem : MonoBehaviour {
-        [Header("Item Config")] 
-        [SerializeField] private string _itemName;
+namespace UI
+{
+    public class ShopItem : MonoBehaviour
+    {
+        [Header("Item Config")]
+        [SerializeField] public string _itemName;
 
-        [SerializeField] private GameObject _itemPrefab;
-        [SerializeField] private int _itemCost;
+        [SerializeField] public Sprite _itemImage;
+        [SerializeField] public GameObject _itemPrefab;
+        [SerializeField] public int _itemCost;
+        [SerializeField] public bool _combineAttachment;
 
-        [Header("Refs")] 
+        [Header("Refs")]
         [SerializeField] private TextMeshProUGUI _priceText;
+        [SerializeField] private Image _image;
         [SerializeField] private HoverEventListener _hoverEventListener;
 
-        private void Start() {
+        private void Start()
+        {
             _hoverEventListener.OnClickEvents.AddListener(AttemptBuyItem);
             _priceText.text = _itemCost.ToString();
+            _image.sprite = _itemImage;
         }
 
-        private void AttemptBuyItem() {
+        private void AttemptBuyItem() // TODO: check for already bought items
+        {
             Debug.Log($"Trying to buy {_itemName}");
 
-            if (PlayerData.EggCount < _itemCost) {
-                Debug.Log("Card declined, insignificant funds!");
+            if (PlayerData.EggCount < _itemCost)
+            {
+                Debug.Log("insignificant eggs");
                 return;
             }
-            
+
+            if (_combineAttachment)
+            {
+                if (GameRunner.Instance._activeVehicle == null)
+                {
+                    return;
+                }
+                if (GameRunner.Instance._activeVehicle.GetComponent<CombineController>())
+                {
+                    GameObject attachmentPoint = GameRunner.Instance._activeVehicle.GetComponent<CombineController>().attachmentPoint;
+                    GameRunner.Instance.BuyAttachment(_itemPrefab, _itemImage);
+                    ShopController.Instance.CloseShop();
+                    GameObject combineAttachment = Instantiate(_itemPrefab, attachmentPoint.transform.position, attachmentPoint.transform.rotation);
+                    combineAttachment.transform.parent = attachmentPoint.transform;
+                    return;
+                }
+                else
+                {
+                    Debug.Log("must own combine first");
+                    return;
+                }
+
+            }
+
+            VehicleController newVC = _itemPrefab.GetComponent<VehicleController>();
+            if (GameRunner.Instance._activeVehicle != null &&
+                newVC != null &&
+                GameRunner.Instance._activeVehicle.GetType() == newVC.GetType())
+            {
+                Debug.Log("Can't buy the same vehicle type");
+                return;
+            }
+
             PlayerData.EggCount -= _itemCost;
             GameRunner.Instance.SpawnVehicle(_itemPrefab);
             ShopController.Instance.CloseShop();
         }
+
+        public void SetupShopItemData(NewShopItem newItem)
+        {
+            _itemName = newItem._itemName;
+            _itemCost = newItem._itemCost;
+            _itemImage = newItem._itemImage;
+            _itemPrefab = newItem._itemPrefab;
+            _combineAttachment = newItem._combineAttachment;
+
+            _priceText.text = _itemCost.ToString();
+            _image.sprite = _itemImage;
+        }
+
     }
 }
