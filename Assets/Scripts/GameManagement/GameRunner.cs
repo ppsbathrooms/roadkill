@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 using Vehicles.Controllers;
 
@@ -68,8 +69,8 @@ namespace GameManagement
                 }
                 else
                 {
-                    HUDController.Instance.UpdateEquipment(image);
-                    UI.ShopController.Instance.CloseShop();
+                    ShopController.Instance.UpdateEquipment(image);
+                    ShopController.Instance.CloseShop();
                 }
 
                 foreach (var attachment in attachments.Values)

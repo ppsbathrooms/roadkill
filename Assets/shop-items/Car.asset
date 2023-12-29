@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f04325427faf3948862f3566e309fad, type: 3}
   m_Name: Car
   m_EditorClassIdentifier: 
-  _itemName: car
+  _itemName: Car
   _itemImage: {fileID: 21300000, guid: 20116304d42955d49bfe831a4c79edd6, type: 3}
   _itemPrefab: {fileID: 4270322924120231461, guid: e75aebd6420bb294390b2652556c1d7d,
     type: 3}
