@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f04325427faf3948862f3566e309fad, type: 3}
   m_Name: Combine
   m_EditorClassIdentifier: 
-  _itemName: Combine
-  _itemImage: {fileID: 21300000, guid: 2b2db2c692a86954c963cab8f4691c6c, type: 3}
-  _itemPrefab: {fileID: 2775909397057965228, guid: b25fb1c414dcbcb4a893585b5a344379,
+  _name: Combine
+  _image: {fileID: 21300000, guid: 2b2db2c692a86954c963cab8f4691c6c, type: 3}
+  _uiItemPrefab: {fileID: 6032628416194351760, guid: 43a5bc76f26da8c4abbba4f63b617c50,
     type: 3}
-  _itemCost: 0
-  _combineAttachment: 0
+  _prefab: {fileID: 2775909397057965228, guid: b25fb1c414dcbcb4a893585b5a344379, type: 3}
+  _cost: 0
+  _upgrades: []

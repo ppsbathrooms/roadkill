@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f04325427faf3948862f3566e309fad, type: 3}
-  m_Name: CombineSpikey
+  m_Name: Car
   m_EditorClassIdentifier: 
-  _itemName: Combine Spikey
-  _itemImage: {fileID: 21300000, guid: 99dbeeff9b2e81a49b256ff0e0886109, type: 3}
-  _itemPrefab: {fileID: 855082532081029751, guid: d66a0cc61eef37c4bad9b2dccb8fcf62,
+  _name: Car
+  _image: {fileID: 21300000, guid: 20116304d42955d49bfe831a4c79edd6, type: 3}
+  _uiItemPrefab: {fileID: 6032628416194351760, guid: 43a5bc76f26da8c4abbba4f63b617c50,
     type: 3}
-  _itemCost: 0
-  _combineAttachment: 1
+  _prefab: {fileID: 4270322924120231461, guid: e75aebd6420bb294390b2652556c1d7d, type: 3}
+  _cost: 0
+  _upgrades:
+  - {fileID: 11400000, guid: 6ff112369ab18a14cb69a29eb8902e0e, type: 2}

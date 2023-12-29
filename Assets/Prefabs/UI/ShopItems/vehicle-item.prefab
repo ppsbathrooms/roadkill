@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 8342901526847037171}
   - component: {fileID: 6114909913703808663}
   m_Layer: 0
-  m_Name: shopItem
+  m_Name: vehicle-item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -431,14 +431,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09891e3900a1a7a4e98ac0143b4469b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemName: 
-  _itemImage: {fileID: 0}
-  _itemPrefab: {fileID: 0}
-  _itemCost: 0
-  combineAttachment: 0
-  _priceText: {fileID: 6580791451928411208}
-  _image: {fileID: 1464087824147375855}
+  _imageUI: {fileID: 1464087824147375855}
   _hoverEventListener: {fileID: 8342901526847037171}
+  _priceText: {fileID: 6580791451928411208}
 --- !u!114 &8342901526847037171
 MonoBehaviour:
   m_ObjectHideFlags: 0

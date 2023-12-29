@@ -55,7 +55,6 @@ namespace Vehicles.Controllers
 
         private void Start()
         {
-            Cursor.lockState = CursorLockMode.Locked;
             if (Camera.main!.TryGetComponent(out CameraFollow camFollow))
             {
                 camFollow.target = camTarget;

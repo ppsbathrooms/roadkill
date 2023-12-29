@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
 namespace UI.ShopItemData {
-    [CreateAssetMenu(fileName = "ShopItemData", menuName = "Shop/ShopItem")]
-    public class AbstractShopItemData : ScriptableObject {
+    public abstract class AbstractShopItemData : ScriptableObject {
         [Header("Basic Config")]
-        [SerializeField] public string _itemName;
-        [SerializeField] public Sprite _itemImage;
+        public string _name;
+        public Sprite _image;
+        public GameObject _uiItemPrefab;
     }
 }

@@ -1,4 +1,6 @@
+using UI.ShopItemData;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI
@@ -9,11 +11,10 @@ namespace UI
 
         [Header("Obj Refs")][SerializeField] private GameObject shopObj;
         [SerializeField] private GameObject hotbarItemPrefab;
-        [SerializeField] private GameObject shopItemPrefab;
 
         [SerializeField] private Transform equipmentContainer;
         [SerializeField] public Transform shopItemsContainer;
-        [SerializeField] private VehicleItemData[] shopItems;
+        [FormerlySerializedAs("shopItems")] [SerializeField] private AbstractShopItemData[] shopVehicles;
 
         public bool ShopEnabled { get; private set; }
 
@@ -26,7 +27,7 @@ namespace UI
         {
             ShopEnabled = shopObj.activeSelf;
             OpenShop(); // TODO: start with a basic vehicle and closed shop
-            PopulateShop();
+            PopulateShopWithVehicles();
         }
 
         private void Update()
@@ -48,7 +49,7 @@ namespace UI
             shopObj.SetActive(true);
 
             Cursor.lockState = CursorLockMode.None;
-            PopulateShop();
+            PopulateShopWithVehicles();
         }
 
         public void CloseShop()
@@ -83,22 +84,27 @@ namespace UI
             Debug.LogWarning("image component not found in the prefab");
         }
 
-        private void PopulateShop()
+
+        private void PopulateShopWithVehicles() {
+            PopulateShop(shopVehicles);
+        }
+        
+        public void PopulateShop(AbstractShopItemData[] items)
         {
             ClearShopContents();
 
-            foreach (VehicleItemData item in shopItems)
+            foreach (var item in items)
             {
-                GameObject newItem = Instantiate(shopItemPrefab, shopItemsContainer);
-                ShopVehicle vehicleScript = newItem.GetComponent<ShopVehicle>();
+                var newItem = Instantiate(item._uiItemPrefab, shopItemsContainer);
+                var vehicleItemScript = newItem.GetComponent<AbstractShopItem>();
 
-                if (vehicleScript != null)
+                if (vehicleItemScript != null)
                 {
-                    vehicleScript.SetupShopItemData(item);
+                    vehicleItemScript.SetupShopItemData(item);
                 }
                 else
                 {
-                    Debug.LogError("shopitem script not found on the instantiated object");
+                    Debug.LogError("shop item script not found on the instantiated object");
                 }
             }
         }

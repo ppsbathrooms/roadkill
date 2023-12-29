@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c9edff45794452801b8994bcfba30e, type: 3}
+  m_Name: RollerUpgrde
+  m_EditorClassIdentifier: 
+  _name: Roller
+  _image: {fileID: 21300000, guid: 7de8b88ec1d16a1448149a76a94d1dc2, type: 3}
+  _uiItemPrefab: {fileID: 6032628416194351760, guid: 8b45baeb8c3d7d842858420fe0392ec0,
+    type: 3}
+  _defaultValue: 0
+  _upgradeLayers:
+  - _statValue: 1.5
+    _cost: 0
+  - _statValue: 2
+    _cost: 0
+  - _statValue: 2.5
+    _cost: 0
