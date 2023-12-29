@@ -18,4 +18,7 @@ MonoBehaviour:
     type: 3}
   _prefab: {fileID: 2775909397057965228, guid: b25fb1c414dcbcb4a893585b5a344379, type: 3}
   _cost: 0
-  _upgrades: []
+  _upgrades:
+  - {fileID: 11400000, guid: 6ff112369ab18a14cb69a29eb8902e0e, type: 2}
+  - {fileID: 11400000, guid: afb7adf151e94a7458646f0e46cd1625, type: 2}
+  - {fileID: 11400000, guid: a9054696dbe84ce43a0ace4550c585e2, type: 2}

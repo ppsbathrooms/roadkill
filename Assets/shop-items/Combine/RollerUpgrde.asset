@@ -18,9 +18,5 @@ MonoBehaviour:
     type: 3}
   _defaultValue: 0
   _upgradeLayers:
-  - _statValue: 1.5
-    _cost: 0
-  - _statValue: 2
-    _cost: 0
-  - _statValue: 2.5
+  - _statValue: 1
     _cost: 0
