@@ -32,7 +32,7 @@ namespace UI
 
         private void AttemptBuyItem() // TODO: check for already bought items
         {
-            Debug.Log($"Trying to buy {_itemName}");
+            // Debug.Log($"Trying to buy {_itemName}");
 
             if (PlayerData.EggCount < _itemCost)
             {
@@ -48,11 +48,7 @@ namespace UI
                 }
                 if (GameRunner.Instance._activeVehicle.GetComponent<CombineController>())
                 {
-                    GameObject attachmentPoint = GameRunner.Instance._activeVehicle.GetComponent<CombineController>().attachmentPoint;
                     GameRunner.Instance.BuyAttachment(_itemPrefab, _itemImage);
-                    ShopController.Instance.CloseShop();
-                    GameObject combineAttachment = Instantiate(_itemPrefab, attachmentPoint.transform.position, attachmentPoint.transform.rotation);
-                    combineAttachment.transform.parent = attachmentPoint.transform;
                     return;
                 }
                 else

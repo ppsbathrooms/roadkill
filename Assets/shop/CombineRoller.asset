@@ -16,5 +16,5 @@ MonoBehaviour:
   _itemImage: {fileID: 21300000, guid: 7de8b88ec1d16a1448149a76a94d1dc2, type: 3}
   _itemPrefab: {fileID: 1888567659360783344, guid: 22ba697b8c87a524c9e98938654b5534,
     type: 3}
-  _itemCost: 5
+  _itemCost: 0
   _combineAttachment: 1

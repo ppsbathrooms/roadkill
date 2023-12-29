@@ -9,6 +9,8 @@ TagManager:
   - farmer
   - scene
   - hotbarImage
+  - combineRoller
+  - combineSpikes
   layers:
   - Default
   - TransparentFX

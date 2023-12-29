@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Vehicles.Controllers;
 
@@ -44,25 +44,52 @@ namespace GameManagement
 
         public void BuyAttachment(GameObject prefab, Sprite image)
         {
-            HUDController.Instance.UpdateEquipment(image);
-            // GameObject combineAttachment = Instantiate()
-        }
+            var combineController = _activeVehicle.GetComponent<CombineController>();
 
-        /*private void ToggleVehicle()
-        {
-            combineActive = !combineActive;
-            _activeVehicle.Disable();
-
-            if (combineActive)
+            if (combineController != null && combineController.attachmentPoint != null)
             {
-                _activeVehicle = combine;
+                GameObject attachmentPoint = combineController.attachmentPoint;
+
+                if (combineController.attachments == null)
+                {
+                    combineController.attachments = new Dictionary<GameObject, GameObject>();
+                }
+
+                Dictionary<GameObject, GameObject> attachments = combineController.attachments;
+
+                if (attachments.ContainsKey(prefab))
+                {
+                    Debug.Log("attachment already bought");
+
+                    if (combineController._activeAttachment == attachments[prefab])
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    HUDController.Instance.UpdateEquipment(image);
+                    UI.ShopController.Instance.CloseShop();
+                }
+
+                foreach (var attachment in attachments.Values)
+                {
+                    attachment.SetActive(false);
+                }
+
+                GameObject combineAttachment = Instantiate(prefab, attachmentPoint.transform.position, attachmentPoint.transform.rotation);
+                combineAttachment.transform.parent = attachmentPoint.transform;
+                combineController._activeAttachment = combineAttachment;
+                combineAttachment.SetActive(true);
+
+                attachments[prefab] = combineAttachment;
             }
             else
             {
-                _activeVehicle = normalCar;
+                Debug.LogError("combinecontroller or related components are not properly set up");
             }
+        }
 
-            _activeVehicle.Enable();
-        }*/
+
     }
 }

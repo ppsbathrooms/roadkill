@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Vehicles.Controllers
@@ -6,6 +7,9 @@ namespace Vehicles.Controllers
     {
         [Header("Vehicle Specific Settings")]
         [SerializeField] public GameObject attachmentPoint;
+        [SerializeField] public Dictionary<GameObject, GameObject> attachments = new Dictionary<GameObject, GameObject>();
+        [SerializeField] public GameObject _activeAttachment;
+
 
     }
 }

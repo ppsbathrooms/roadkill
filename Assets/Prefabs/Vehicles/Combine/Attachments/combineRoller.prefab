@@ -97,11 +97,11 @@ GameObject:
   - component: {fileID: 3056139672393451936}
   m_Layer: 0
   m_Name: combineRoller
-  m_TagString: Untagged
+  m_TagString: combineRoller
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &520292620372976283
 Transform:
   m_ObjectHideFlags: 0
