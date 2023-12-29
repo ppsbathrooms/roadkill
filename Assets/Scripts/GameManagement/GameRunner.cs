@@ -13,6 +13,7 @@ namespace GameManagement
         {
             Instance = this;
         }
+        [SerializeField] private GameObject startingVehicle;
         [SerializeField] private VehicleController normalCar;
         [SerializeField] private VehicleController combine;
 
@@ -23,6 +24,8 @@ namespace GameManagement
         void Start()
         {
             _activeVehicle = combine;
+            SpawnVehicle(startingVehicle);
+            Cursor.lockState = CursorLockMode.Locked;
             //GameStateMachine.SetState<GameStateMachine.PreGame>(); TODO: fix state machine for new gameplay
         }
 

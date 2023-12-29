@@ -19,6 +19,7 @@ public class Settings : MonoBehaviour
     public GameObject grassHit;
     public GameObject bloodHit;
     public GameObject tireMark;
+    public GameObject wheat;
 
     [Space]
     [Header("Containers")]

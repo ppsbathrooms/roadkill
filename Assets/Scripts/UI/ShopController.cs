@@ -14,7 +14,7 @@ namespace UI
 
         [SerializeField] private Transform equipmentContainer;
         [SerializeField] public Transform shopItemsContainer;
-        [FormerlySerializedAs("shopItems")] [SerializeField] private AbstractShopItemData[] shopVehicles;
+        [FormerlySerializedAs("shopItems")][SerializeField] private AbstractShopItemData[] shopVehicles;
 
         public bool ShopEnabled { get; private set; }
 
@@ -26,7 +26,7 @@ namespace UI
         private void Start()
         {
             ShopEnabled = shopObj.activeSelf;
-            OpenShop(); // TODO: start with a basic vehicle and closed shop
+            CloseShop(); // TODO: start with a basic vehicle and closed shop
             PopulateShopWithVehicles();
         }
 
@@ -59,7 +59,7 @@ namespace UI
             Cursor.lockState = CursorLockMode.Locked;
             ClearShopContents();
         }
-        
+
         public void UpdateEquipment(Sprite equipmentImage)
         {
             if (hotbarItemPrefab == null || equipmentContainer == null)
@@ -85,10 +85,11 @@ namespace UI
         }
 
 
-        private void PopulateShopWithVehicles() {
+        private void PopulateShopWithVehicles()
+        {
             PopulateShop(shopVehicles);
         }
-        
+
         public void PopulateShop(AbstractShopItemData[] items)
         {
             ClearShopContents();
@@ -109,8 +110,10 @@ namespace UI
             }
         }
 
-        private void ClearShopContents() {
-            foreach (Transform child in shopItemsContainer) {
+        private void ClearShopContents()
+        {
+            foreach (Transform child in shopItemsContainer)
+            {
                 Destroy(child.gameObject);
             }
         }

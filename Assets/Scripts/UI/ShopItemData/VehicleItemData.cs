@@ -1,6 +1,7 @@
 using UnityEngine;
 
-namespace UI.ShopItemData {
+namespace UI.ShopItemData
+{
     [CreateAssetMenu(fileName = "ShopItemData", menuName = "Shop/VehicleData")]
     public class VehicleItemData : AbstractShopItemData
     {

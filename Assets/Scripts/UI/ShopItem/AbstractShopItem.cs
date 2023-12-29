@@ -18,7 +18,7 @@ namespace UI
         [Header("Refs")]
         [SerializeField] private Image _imageUI;
         [SerializeField] private HoverEventListener _hoverEventListener;
-        
+
         private string _name;
 
         private void Start()
@@ -34,7 +34,7 @@ namespace UI
         {
             _name = abstractItemData._name;
             _imageUI.sprite = abstractItemData._image;
-            
+
             SetupCustomItemData(abstractItemData);
         }
 
