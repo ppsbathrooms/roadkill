@@ -16,6 +16,7 @@ MonoBehaviour:
   _image: {fileID: 21300000, guid: 99dbeeff9b2e81a49b256ff0e0886109, type: 3}
   _uiItemPrefab: {fileID: 6032628416194351760, guid: 8b45baeb8c3d7d842858420fe0392ec0,
     type: 3}
+  _uiDescription: this is a spike upgrade
   _defaultValue: 0
   _upgradeLayers:
   - _statValue: 1

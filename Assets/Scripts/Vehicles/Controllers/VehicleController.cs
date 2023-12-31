@@ -1,4 +1,5 @@
 using Collidable;
+using UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -60,9 +61,9 @@ namespace Vehicles.Controllers
                 camFollow.target = camTarget;
             }
             else Debug.LogError("Could Not Find CameraFollow Instance");
-            
+
             Respawn();
-            
+
             CustomVehicleStart();
         }
 
@@ -75,7 +76,7 @@ namespace Vehicles.Controllers
 
         private void UpdateCarForces()
         {
-            currentAcceleration = acceleration * Input.GetAxis("Vertical");
+            currentAcceleration = ShopController.Instance.ShopEnabled ? 0f : acceleration * Input.GetAxis("Vertical");
             speed = rb.velocity.magnitude * 3.6f;
 
             backRight.motorTorque = currentAcceleration;
@@ -85,7 +86,7 @@ namespace Vehicles.Controllers
             frontLeft.brakeTorque = currentBreakForce;
             backRight.brakeTorque = currentBreakForce;
             backLeft.brakeTorque = currentBreakForce;
-            currentTurnAngle = maxTurnAngle * Input.GetAxis("Horizontal");
+            currentTurnAngle = ShopController.Instance.ShopEnabled ? 0f : maxTurnAngle * Input.GetAxis("Horizontal");
             frontRight.steerAngle = currentTurnAngle;
             frontLeft.steerAngle = currentTurnAngle;
 
@@ -98,6 +99,16 @@ namespace Vehicles.Controllers
 
         private void Update()
         {
+            HUDController.Instance.UpdateSpeedText(speed);
+
+            CustomVehicleUpdate();
+
+            if (ShopController.Instance.ShopEnabled)
+            {
+                currentBreakForce = 0f;
+                return;
+            }
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 currentBreakForce = breakingForce;
@@ -110,11 +121,9 @@ namespace Vehicles.Controllers
             if (Input.GetKey(KeyCode.R) || Input.GetKey(KeyCode.Delete))
                 Respawn();
 
-            HUDController.Instance.UpdateSpeedText(speed);
 
-            CustomVehicleUpdate();
         }
-        
+
         protected virtual void CustomVehicleUpdate() { }
 
 

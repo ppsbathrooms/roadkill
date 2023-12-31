@@ -1,3 +1,4 @@
+using UI;
 using UnityEngine;
 
 namespace Vehicles.Controllers
@@ -8,11 +9,19 @@ namespace Vehicles.Controllers
 
         [SerializeField] private GameObject brakeLights;
 
-        protected override void CustomVehicleStart() {
+        protected override void CustomVehicleStart()
+        {
             brakeLights.SetActive(false);
         }
 
-        protected override void CustomVehicleUpdate() {
+        protected override void CustomVehicleUpdate()
+        {
+            if (ShopController.Instance.ShopEnabled)
+            {
+                brakeLights.SetActive(false);
+                return;
+            }
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 brakeLights.SetActive(true);

@@ -5,16 +5,27 @@ using UnityEngine.UI;
 
 namespace UI
 {
+
+    public class currentItemData
+    {
+        public GameObject prefab;
+        public int price;
+    }
+
     public class ShopController : MonoBehaviour
     {
         public static ShopController Instance;
 
-        [Header("Obj Refs")][SerializeField] private GameObject shopObj;
+        [Header("Obj Refs")]
+        [SerializeField] private GameObject shopObj;
+        [SerializeField] private GameObject shopInfoObj;
         [SerializeField] private GameObject hotbarItemPrefab;
 
         [SerializeField] private Transform equipmentContainer;
         [SerializeField] public Transform shopItemsContainer;
-        [FormerlySerializedAs("shopItems")][SerializeField] private AbstractShopItemData[] shopVehicles;
+        [SerializeField] private AbstractShopItemData[] shopVehicles;
+
+        public currentItemData _currentItemData = new currentItemData();
 
         public bool ShopEnabled { get; private set; }
 
@@ -26,7 +37,8 @@ namespace UI
         private void Start()
         {
             ShopEnabled = shopObj.activeSelf;
-            CloseShop(); // TODO: start with a basic vehicle and closed shop
+            CloseShop();
+            HideInfo();
             PopulateShopWithVehicles();
         }
 
@@ -45,11 +57,22 @@ namespace UI
 
         public void OpenShop()
         {
+            HideInfo();
             ShopEnabled = true;
             shopObj.SetActive(true);
 
             Cursor.lockState = CursorLockMode.None;
             PopulateShopWithVehicles();
+        }
+
+        public void DisplayInfo()
+        {
+            shopInfoObj.SetActive(true);
+        }
+
+        public void HideInfo()
+        {
+            shopInfoObj.SetActive(false);
         }
 
         public void CloseShop()

@@ -36,11 +36,12 @@ namespace Collidable
                 WanderAround();
         }
 
-        protected override void SpawnDeathEffects() {
+        protected override void SpawnDeathEffects()
+        {
             dead = true;
             agent.enabled = false;
             GetComponent<Animator>().enabled = false;
-            
+
             base.SpawnDeathEffects();
             Instantiate(Settings.instance.deathEffect, transform.position, Quaternion.Euler(new Vector3(-90, 0, 0)), transform);
             GameObject feather = Instantiate(Settings.instance.featherEffect, transform.position, Quaternion.Euler(new Vector3(-90, 0, 0)));
@@ -73,7 +74,7 @@ namespace Collidable
                 }
             }
 
-            Debug.LogWarning("failed to find a valid position for the destination after " + maxAttempts + " attempts.");
+            // Debug.LogWarning("failed to find a valid position for the destination after " + maxAttempts + " attempts.");
         }
     }
 }

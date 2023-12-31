@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Car
   _image: {fileID: 21300000, guid: 20116304d42955d49bfe831a4c79edd6, type: 3}
-  _uiItemPrefab: {fileID: 6032628416194351760, guid: 43a5bc76f26da8c4abbba4f63b617c50,
+  _uiItemPrefab: {fileID: 6993613330399241188, guid: 2129694f339784f48884d0d66d7059a8,
     type: 3}
+  _uiDescription: 'this is a car
+
+    vroom vroom'
   _prefab: {fileID: 4270322924120231461, guid: e75aebd6420bb294390b2652556c1d7d, type: 3}
   _cost: 0
   _upgrades:
